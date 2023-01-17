@@ -38,12 +38,17 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-map({'n', 'v'}, '<leader>q', '<cmd>q<cr>', { desc = "Quit Vim"})
-map({'n', 'v'}, '<leader>w', '<cmd>w<cr>', { desc = "Save Vim"})
+map({ 'n', 'v' }, '<leader>q', '<cmd>q<cr>', { desc = "Quit Vim" })
+map({ 'n', 'v' }, '<leader>w', '<cmd>w<cr>', { desc = "Save Vim" })
 
 -- Resize the screen
-map({'n', 'v'}, '<C-c>', '<C-w>>', {desc = "Increase screen size" })
-map({'n', 'v'}, '<C-x>', '<C-w><', {desc = "Decrease screen size" })
+map({ 'n', 'v' }, '<C-c>', '<C-w>>', { desc = "Increase screen size" })
+map({ 'n', 'v' }, '<C-x>', '<C-w><', { desc = "Decrease screen size" })
 
-map('n', '<leader>e', '<cmd>Ex<cr>', {desc = "Open File Explorer"})
-map('n', '<leader>ve', '<C-w>v', {desc = 'Open Split Window'})
+map('n', '<leader>e', '<cmd>Ex<cr>', { desc = "Open File Explorer" })
+map('n', '<leader>ve', '<C-w>v', { desc = 'Open Split Window' })
+
+map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = "Find Files" })
+map('n', '<leader>fg', '<cmd>Telescope find_grep<cr>', { desc = "File grep" })
+map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = "Find buffer" })
+map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = "Find help" })
