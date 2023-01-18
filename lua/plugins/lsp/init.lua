@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+local buf = vim.lsp.buf
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -6,8 +8,6 @@ return {
 	{
 		'folke/neodev.nvim',
 		config = function()
-			local map = vim.keymap.set
-			local buf = vim.lsp.buf
 			require 'neodev'.setup()
 			local lspconfig = require 'lspconfig'
 			local servers = { "sumneko_lua", "clangd", "pyright", "gopls" }
@@ -98,7 +98,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "williamboman/mason.nvim" },
+		-- dependencies = { "williamboman/mason.nvim" },
 		opts = {
 			ensure_installed = { "sumneko_lua", "clangd", "pyright", "gopls" }
 		},
