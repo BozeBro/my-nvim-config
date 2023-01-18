@@ -50,10 +50,10 @@ map('n', '<leader>ve', '<C-w>v', { desc = 'Open Split Window' })
 
 --[[ Telescope bindings ]]
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = "Find Files" })
-map('n', '<leader>fg', '<cmd>Telescope find_grep<cr>', { desc = "File grep" })
+map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = "File grep" })
 map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = "Find buffer" })
 map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = "Find help" })
-map('n', '<leader>fc', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { desc = "File grep in current buffer" })
+map('n', '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { desc = "File grep in current buffer" })
 
 map('n', '<leader>tf', '<cmd>ToggleTerm direction=float<cr>', {desc = "Toggle Float Terminal"})
 map('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal<cr>', {desc = "Toggle Horizontal Terminal"})
