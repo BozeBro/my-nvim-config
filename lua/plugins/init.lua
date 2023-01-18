@@ -8,5 +8,6 @@ return {
 	},
 	{ "ellisonleao/gruvbox.nvim" },
 	{ 'nvim-tree/nvim-web-devicons',
-		config = true, }
+		config = true, },
+		{"tpope/vim-surround"},
 }
