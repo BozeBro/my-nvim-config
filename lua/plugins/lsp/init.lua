@@ -43,6 +43,7 @@ return {
 
 				-- Move to the next diagnostic
 				map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+				map('n', '<space>f', function() buf.format { async = true } end, bufopts)
 			end
 			local lsp_flags = {}
 			for _, v in ipairs(servers) do
@@ -52,6 +53,13 @@ return {
 					capabilities = capabilities,
 				}
 			end
+			lspconfig.tsserver.setup {
+				on_attach = on_attach,
+				flags = lsp_flags,
+				capabilities = capabilities,
+				filetypes = {"typescript", "typescriptreact", "typescript.tsx"},
+				cmd = { "typescript-language-server", "--stdio" },
+			}
 			local cmp = require 'cmp'
 			local luasnip = require 'luasnip'
 			-- local select_opts = {behavior = cmp.SelectBehavior.Select} ??
