@@ -13,15 +13,4 @@ vim.opt.rtp:prepend(lazypath)
 require "settings"
 
 require("lazy").setup("plugins")
---require "lazy".setup()
---print(lazypath)
---require'lazy'.setup(
---{
---{"nvim-treesitter/nvim-treesitter", opts = {highlight = {enable = true}, ensure_installed = {"lua"}},
---config = function(_, opts) require 'nvim-treesitter.configs'.setup(opts) end,
---
---},
---{"nvim-telescope/telescope.nvim"},
---	"nvim-lua/plenary.nvim",
---	}
---	)
+

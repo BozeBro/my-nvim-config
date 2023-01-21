@@ -1,28 +1,38 @@
+local o = vim.o 
+
 vim.wo.number = true
 
 -- Set highlight on search
-vim.o.hlsearch = false
+o.hlsearch = false
 -- Enable mouse mode
-vim.o.mouse = 'a'
+o.mouse = 'a'
 -- Enable break indent
-vim.o.breakindent = true
+o.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+o.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+o.ignorecase = true
+o.smartcase = true
 
 -- Decrease update time
-vim.o.updatetime = 250
+o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
-vim.o.termguicolors = true
+o.termguicolors = true
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,menuone,noselect'
+o.completeopt = 'menu,menuone,noselect'
 
+local opt = vim.opt
+opt.shiftwidth = 4   -- My nice python shiftwidth
+opt.showmode = false -- lualine shows mode
+opt.tabstop = 4 -- Number of spaces tabs are for 
+opt.list = true -- Show invisible characters like <tab>
+opt.expandtab = true -- Use Spaces instead of tabs 
+opt.grepprg = 'rg --vimgrep' -- Use rg instead of standard grep
+opt.spelllang = { 'en'}
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`

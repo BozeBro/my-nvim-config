@@ -3,7 +3,7 @@ local buf = vim.lsp.buf
 return {
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { 'folke/neodev.nvim', 'williamboman/mason.nvim', "williamboman/mason.nvim" },
+		dependencies = { 'folke/neodev.nvim', 'williamboman/mason.nvim', "williamboman/mason-lspconfig.nvim" },
 	},
 	{
 		'folke/neodev.nvim',
@@ -12,7 +12,8 @@ return {
 			local lspconfig = require 'lspconfig'
 			local servers = { "sumneko_lua", "clangd", "pyright", "gopls" }
 			-- Add additional capabilities supported by nvim-cmp
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 			local on_attach = function(_, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
 				vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
