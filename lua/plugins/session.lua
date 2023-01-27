@@ -6,21 +6,21 @@ return {
         config = true,
         keys = {
             {
-                "<leader>qs",
+                "<leader>ss",
                 function()
                     require("persistence").load()
                 end,
                 desc = "restore directory session",
             },
             {
-                "<leader>ql",
+                "<leader>sl",
                 function()
                     require("persistence").load({ last = true })
                 end,
                 desc = "restore directory session",
             },
             {
-                "<leader>qd",
+                "<leader>sd",
                 function()
                     require("persistence").stop()
                 end,

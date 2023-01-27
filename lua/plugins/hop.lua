@@ -1,6 +1,7 @@
 return {
     {
         "phaazon/hop.nvim",
+        event = "VeryLazy",
         version = "v2",
         opts = {
             keys = "etovxqpdygfblzhckisuran",
