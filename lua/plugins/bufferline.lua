@@ -4,5 +4,6 @@ return {
         event = "VeryLazy",
         version = "v3*",
         config = true,
+        lazy = true,
     },
 }

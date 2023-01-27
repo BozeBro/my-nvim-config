@@ -7,9 +7,11 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
+            "L3MON4D3/LuaSnip",
         },
         event = "InsertEnter",
         config = function()
+            local autopairs = require("nvim-autopairs.completion.cmp")
             local cmp = require("cmp")
             local luasnip = require("luasnip")
             cmp.setup({
@@ -57,6 +59,7 @@ return {
                     { name = "buffer" },
                 }),
             })
+            cmp.event:on("confirm_done", autopairs.on_confirm_done())
             cmp.setup.cmdline({ "/", "?" }, {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = {
@@ -75,20 +78,23 @@ return {
     },
     {
         "L3MON4D3/LuaSnip",
+        lazy = true,
         dependencies = {
             "rafamadriz/friendly-snippets",
             config = function()
                 require("luasnip/loaders/from_vscode").lazy_load()
             end,
         },
-        opts = {
+        --[[ opts = {
             history = true,
             delete_check_events = "TextChanged",
-        },
+        }, ]]
     },
-    {},
-    {
-        "hrsh7th/nvim-cmp",
-        "hrsh7th/cmp-cmdline",
-    },
+    { "hrsh7th/nvim-cmp", lazy = true },
+    { "hrsh7th/cmp-cmdline", lazy = true },
+    { "hrsh7th/cmp-nvim-lsp", lazy = true },
+    { "hrsh7th/cmp-buffer", lazy = true },
+    { "hrsh7th/cmp-path", lazy = true },
+    { "saadparwaiz1/cmp_luasnip", lazy = true },
+    { "rafamadriz/friendly-snippets", lazy = true },
 }
