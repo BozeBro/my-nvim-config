@@ -11,8 +11,8 @@ map({ 'n', 'v' }, '<leader>q', '<cmd>q<cr>', { desc = "Quit Vim" })
 map({ 'n', 'v' }, '<leader>w', '<cmd>w<cr>', { desc = "Save Vim" })
 
 -- Resize the screen
-map({ 'n', 'v' }, '<C-c>', '<C-w>>', { desc = "Increase screen size" })
-map({ 'n', 'v' }, '<C-x>', '<C-w><', { desc = "Decrease screen size" })
+map({ 'n', 'v' }, '<C-c>', '<cmd>vertical resize +5<cr>', { desc = "Increase screen size" })
+map({ 'n', 'v' }, '<C-x>', '<cmd>vertical resize -5<cr>', { desc = "Decrease screen size" })
 
 map('n', '<leader>e', '<cmd>Ex<cr>', { desc = "Open File Explorer" })
 map('n', '<leader>ve', '<C-w>v', { desc = 'Open Split Window' })

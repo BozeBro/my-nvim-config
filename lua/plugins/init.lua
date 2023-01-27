@@ -11,7 +11,10 @@ return {
 		config = true, },
 		{"tpope/vim-surround"},
 		{"tpope/vim-repeat"},
-		{"windwp/nvim-autopairs", config = true},
+		{"windwp/nvim-autopairs",
+        opts = {
+        },
+        config = true},
 		{
 			"lukas-reineke/indent-blankline.nvim",
 			opts = {
