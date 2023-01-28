@@ -20,3 +20,7 @@ map("n", "<leader>ve", "<C-w>v", { desc = "Open Split Window" })
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Toggle Horizontal Terminal" })
 map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", { desc = "Toggle Vertical Terminal" })
+
+map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Go to next Buffer" })
+map("n", "<leader>bb", "<cmd>bprev<cr>", { desc = "Go to previous Buffer" })
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Close current buffer" })

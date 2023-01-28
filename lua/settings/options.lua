@@ -6,4 +6,5 @@ opt.list = true -- Show invisible characters like <tab>
 opt.expandtab = true -- Use Spaces instead of tabs
 opt.grepprg = "rg --vimgrep" -- Use rg instead of standard grep
 opt.spelllang = { "en" }
+opt.spell = true
 vim.cmd([[ set clipboard=unnamedplus ]])
