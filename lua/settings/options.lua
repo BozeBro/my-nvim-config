@@ -9,3 +9,4 @@ opt.spelllang = { "en" } -- Spelling language is english
 opt.spell = true -- Spell check is turned on
 opt.cursorline = true -- Highlight the current cursor line
 opt.clipboard = "unnamedplus" -- set generic clipboard for copy paste with "+y
+vim.g.python3_host_prog = 0
