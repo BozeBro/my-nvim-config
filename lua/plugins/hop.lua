@@ -11,11 +11,7 @@ return {
 			local hop = require("hop")
 			hop.setup(opts)
 			local map = vim.keymap.set
-<<<<<<< Updated upstream
 			map("n", "f", "<cmd>HopChar1<cr>", { desc = "Hop Char" })
-=======
-			map({ "n", "v" }, "f", "<cmd>HopChar1<cr>", { desc = "Hop Char" })
->>>>>>> Stashed changes
 			map({ "n", "v" }, "<leader>ha", "<cmd>HopAnywhere<cr>", { desc = "Hop Anywhere" })
 			map({ "n", "v" }, "<leader>hw", "<cmd>HopWord<cr>", { desc = "Hop Word" })
 			map({ "n", "v" }, "<leader>hp", "<cmd>HopPattern<cr>", { desc = "Hop Pattern" })
