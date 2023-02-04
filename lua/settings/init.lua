@@ -31,6 +31,7 @@ o.completeopt = "menu,menuone,noselect"
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.netrw_keepdir = 0
 require("settings.options")
 require("settings.keymaps")
 -- vim.cmd([[let g:opamshare = substitute(system('opam var share'),'\n$','','''')]])

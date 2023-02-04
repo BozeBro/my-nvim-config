@@ -3,15 +3,16 @@ return {
 		"hrsh7th/nvim-cmp",
 		version = false,
 		dependencies = {
+			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
-			"L3MON4D3/LuaSnip",
+			"hrsh7th/cmp-cmdline",
 		},
 		event = "InsertEnter",
 		config = function()
-			local autopairs = require("nvim-autopairs.completion.cmp")
+			-- local autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			cmp.setup({
@@ -21,8 +22,8 @@ return {
 					end,
 				},
 				window = {
-					completion = cmp.config.window.bordered(),
-					-- documentation = cmp.config.window.bordered(),
+					-- completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -54,18 +55,12 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip" },
-					{
-						name = "buffer",
-						option = {
-							get_bufnrs = function()
-								return vim.api.nvim_list_bufs()
-							end,
-						},
-					},
+					{ name = "nvim_lsp", dup = 0 },
+					{ name = "luasnip", dup = 0 },
+					{ name = "buffer" },
 				}),
 			})
-			cmp.event:on("confirm_done", autopairs.on_confirm_done())
+			-- cmp.event:on("confirm_done", autopairs.on_confirm_done())
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
@@ -99,11 +94,10 @@ return {
             delete_check_events = "TextChanged",
         }, ]]
 	},
-	{ "hrsh7th/nvim-cmp", lazy = true },
-	{ "hrsh7th/cmp-cmdline", lazy = true },
-	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
-	{ "hrsh7th/cmp-buffer", lazy = true },
-	{ "hrsh7th/cmp-path", lazy = true },
-	{ "saadparwaiz1/cmp_luasnip", lazy = true },
-	{ "rafamadriz/friendly-snippets" },
+	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "hrsh7th/cmp-nvim-lsp"},
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
+	{ "saadparwaiz1/cmp_luasnip" },
 }

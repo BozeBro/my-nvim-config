@@ -1,5 +1,5 @@
 return {
-    {
+{
         "jose-elias-alvarez/null-ls.nvim",
         event = "BufReadPre",
         config = function()
@@ -10,7 +10,7 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     -- null_ls.builtins.completion.spell,
-                    null_ls.builtins.completion.luasnip,
+                    -- null_ls.builtins.completion.luasnip,
                 },
                 on_attach = function(client, bufnr)
                     if client.supports_method("textDocument/formatting") then
@@ -26,5 +26,5 @@ return {
                 end,
             })
         end,
-    },
+    }, 
 }
