@@ -94,10 +94,10 @@ return {
             delete_check_events = "TextChanged",
         }, ]]
 	},
-	{ "hrsh7th/nvim-cmp" },
-	{ "hrsh7th/cmp-cmdline" },
-	{ "hrsh7th/cmp-nvim-lsp"},
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "saadparwaiz1/cmp_luasnip" },
+	{ "hrsh7th/nvim-cmp", lazy = true },
+	{ "hrsh7th/cmp-cmdline", lazy = true },
+	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
+	{ "hrsh7th/cmp-buffer", lazy = true },
+	{ "hrsh7th/cmp-path", lazy = true },
+	{ "saadparwaiz1/cmp_luasnip", lazy = true },
 }
