@@ -8,6 +8,7 @@ return {
 		},
 		config = function(_, opts)
 			require("tokyonight").load(opts)
+			-- require("gruvbox").load()
 		end,
 	},
 	{ "ellisonleao/gruvbox.nvim", lazy = true },

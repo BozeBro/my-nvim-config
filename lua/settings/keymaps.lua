@@ -14,7 +14,7 @@ map({ "n", "v" }, "<leader>w", "<cmd>w<cr>", { desc = "Save Vim" })
 map({ "n", "v" }, "<C-c>", "<cmd>vertical resize +5<cr>", { desc = "Increase screen size" })
 map({ "n", "v" }, "<C-x>", "<cmd>vertical resize -5<cr>", { desc = "Decrease screen size" })
 
-map("n", "<leader>e", "<cmd>Ex<cr>", { desc = "Open File Explorer" })
+map("n", "<leader>e", "<cmd>Telescope file_browser<cr>", { desc = "Open File Explorer" })
 map("n", "<leader>ve", "<C-w>v", { desc = "Open Split Window" })
 
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
@@ -46,4 +46,4 @@ function EscapePair()
 end
 
 vim.api.nvim_set_keymap("i", "<C-l>", "<cmd>lua EscapePair()<CR>", { noremap = true, silent = true })
-
+map("i", "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true })

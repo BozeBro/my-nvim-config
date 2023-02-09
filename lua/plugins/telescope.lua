@@ -19,6 +19,7 @@ return {
 		},
 		dependencies = {
 			{ "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make", name = "fzf" },
+			{ "nvim-telescope/telescope-file-browser.nvim", name = "file_browser" },
 		},
 		opts = {
 			defaults = {
@@ -28,9 +29,10 @@ return {
 				},
 			},
 			extensions = {
-				file_brower = {
+				file_browser = {
 					hijack_netrw = true,
 				},
+				path = "%:p:h",
 			},
 		},
 		config = function(_, opts)
@@ -40,8 +42,5 @@ return {
 			tele.load_extension("fzf")
 			tele.load_extension("file_browser")
 		end,
-	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
 	},
 }
