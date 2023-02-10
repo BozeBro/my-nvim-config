@@ -28,9 +28,12 @@ return {
 					prompt_position = "top",
 				},
 			},
+			mappings = {},
 			extensions = {
 				file_browser = {
+					theme = "dropdown",
 					hijack_netrw = true,
+					depth = false,
 				},
 				path = "%:p:h",
 			},
