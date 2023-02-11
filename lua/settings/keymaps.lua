@@ -46,4 +46,5 @@ function EscapePair()
 end
 
 vim.api.nvim_set_keymap("i", "<C-l>", "<cmd>lua EscapePair()<CR>", { noremap = true, silent = true })
-map("i", "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true })
+map({ "i", "t" }, "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true })
+map("n", "<C-[>", "i", { desc = "Enter Insert Mode" })
