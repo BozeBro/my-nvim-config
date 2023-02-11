@@ -4,8 +4,8 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {
-			style = "storm",
-			-- transparent = true,
+			style = "night",
+			transparent = true,
 		},
 		config = function(_, opts)
 			require("tokyonight").load(opts)

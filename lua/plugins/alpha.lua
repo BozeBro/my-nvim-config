@@ -26,6 +26,7 @@ return {
 			dashboard.section.buttons.val = {
 
 				dashboard.button("f", "Find File", "<cmd>Telescope find_files <cr>"),
+				dashboard.button("g", "Grep Word", "<cmd>Telescope live_grep <cr>"),
 				dashboard.button("s", "Restore Session", [[<cmd>lua require("persistence").load() <cr>]]),
 				dashboard.button("r", "Recent files", "<cmd>Telescope oldfiles <CR>"),
 				dashboard.button("l", "Lazy", "<cmd>Lazy <cr>"),
