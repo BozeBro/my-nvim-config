@@ -9,13 +9,19 @@ return {
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-cmdline",
+			"onsails/lspkind.nvim",
+			"L3MON4D3/LuaSnip",
 		},
 		event = "InsertEnter",
 		config = function()
-			-- local autopairs = require("nvim-autopairs.completion.cmp")
+			local autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			local lspkind = require("lspkind")
 			cmp.setup({
+				formatting = {
+					format = lspkind.cmp_format(),
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -55,12 +61,12 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp", dup = 0 },
 					{ name = "luasnip", dup = 0 },
+					{ name = "nvim_lsp", dup = 0 },
 					{ name = "buffer" },
 				}),
 			})
-			-- cmp.event:on("confirm_done", autopairs.on_confirm_done())
+			cmp.event:on("confirm_done", autopairs.on_confirm_done())
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
@@ -77,27 +83,11 @@ return {
 			})
 		end,
 	},
-	{
-		"L3MON4D3/LuaSnip",
-		lazy = true,
-		version = "<CurrentMajor>.*",
-		build = "make install_jsregexp",
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-			config = function()
-				require("luasnip/loaders/from_vscode").lazy_load()
-			end,
-		},
-		config = true,
-		--[[ opts = {
-            history = true,
-            delete_check_events = "TextChanged",
-        }, ]]
-	},
 	{ "hrsh7th/nvim-cmp", lazy = true },
 	{ "hrsh7th/cmp-cmdline", lazy = true },
 	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
 	{ "hrsh7th/cmp-buffer", lazy = true },
 	{ "hrsh7th/cmp-path", lazy = true },
 	{ "saadparwaiz1/cmp_luasnip", lazy = true },
+	{ "onsails/lspkind.nvim", lazy = true },
 }
