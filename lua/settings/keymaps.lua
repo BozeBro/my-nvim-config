@@ -9,6 +9,7 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 map({ "n", "v" }, "<leader>q", "<cmd>q<cr>", { desc = "Quit Vim" })
 map({ "n", "v" }, "<leader>w", "<cmd>w<cr>", { desc = "Save Vim" })
+map({ "n", "v" }, "<leader>qq", "<cmd>q!<cr>", { desc = "Quit w/e saving" })
 
 -- Resize the screen
 map({ "n", "v" }, "<C-c>", "<cmd>vertical resize +5<cr>", { desc = "Increase screen size" })
