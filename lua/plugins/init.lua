@@ -1,30 +1,27 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		-- lazy = false,
+		lazy = true,
 		-- priority = 1000,
 		opts = {
 			style = "night",
 			transparent = true,
 		},
-		config = function(_, opts)
-			-- require("tokyonight").load(opts)
-			-- require("gruvbox").load()
-		end,
 	},
 	{ "ellisonleao/gruvbox.nvim", lazy = true },
 	{
 		"https://github.com/catppuccin/nvim",
 		name = "catppuccin",
-		lazy = false,
+		lazy = true,
 		opts = {
-			flavour = "macchiato",
+			-- flavour = "macchiato",
+			flavour = "latte",
+
 			-- transparent_background = true,
 		},
 		priority = 1000,
 		config = function(_, opts)
 			require("catppuccin").setup(opts)
-			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{ "nvim-tree/nvim-web-devicons", lazy = true, config = true },
