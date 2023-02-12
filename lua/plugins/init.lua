@@ -19,7 +19,7 @@ return {
 		lazy = false,
 		opts = {
 			flavour = "macchiato",
-			transparent_background = true,
+			-- transparent_background = true,
 		},
 		priority = 1000,
 		config = function(_, opts)
