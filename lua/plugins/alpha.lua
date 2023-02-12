@@ -28,7 +28,7 @@ return {
 				dashboard.button("f", "Find File", "<cmd>Telescope find_files <cr>"),
 				dashboard.button("g", "Grep Word", "<cmd>Telescope live_grep <cr>"),
 				dashboard.button("s", "Restore Session", [[<cmd>lua require("persistence").load() <cr>]]),
-				dashboard.button("r", "Recent files", "<cmd>Telescope oldfiles <CR>"),
+				dashboard.button("b", "Browse Files", "<cmd>Telescope file_browser<CR>"),
 				dashboard.button("l", "Lazy", "<cmd>Lazy <cr>"),
 				dashboard.button("c", "Config", "<cmd>e $MYVIMRC <CR>"),
 				dashboard.button("q", "Quit", "<cmd>q <cr>"),
