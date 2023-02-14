@@ -8,6 +8,7 @@ return {
 			local alpha = require("alpha")
 			--alpha.setup(require'alpha.themes.dashboard'.config)
 			local dashboard = require("alpha.themes.dashboard")
+			dashboard.opts.hl = "hl_group"
 			dashboard.section.header.val = {
 				"██████╗░███████╗███╗░░██╗███████╗██████╗░██╗░█████╗░████████╗",
 				"██╔══██╗██╔════╝████╗░██║██╔════╝██╔══██╗██║██╔══██╗╚══██╔══╝",
