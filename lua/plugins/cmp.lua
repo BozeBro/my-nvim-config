@@ -14,13 +14,22 @@ return {
 		},
 		event = "InsertEnter",
 		config = function()
-			local autopairs = require("nvim-autopairs.completion.cmp")
+			--local autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 			cmp.setup({
 				formatting = {
-					format = lspkind.cmp_format(),
+					format = lspkind.cmp_format({
+						with_text = true,
+						menu = {
+							buffer = "[buf]",
+							nvim_lsp = "[LSP]",
+							luasnip = "[snip]",
+							path = "[path]",
+							cmdline = "[cmd]",
+						},
+					}),
 				},
 				snippet = {
 					expand = function(args)
@@ -28,7 +37,7 @@ return {
 					end,
 				},
 				window = {
-					-- completion = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
@@ -37,15 +46,27 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 					---@diagnostic disable-next-line: missing-parameter
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<c-i>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
+					["<C-i>"] = cmp.mapping.confirm({
+						behavior = "insert",
 						select = true,
 					}),
-					["<C-j>"] = cmp.mapping(function(fallback)
+					["<c-j>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.jumpable(-1) then
+							luasnip.jump(-1)
 						else
 							fallback()
 						end
@@ -53,20 +74,17 @@ return {
 					["<C-k>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip", dup = 0 },
-					{ name = "nvim_lsp", dup = 0 },
-					{ name = "buffer" },
-				}),
+					{ name = "nvim_lsp", dup = 0, keyword_length = 3 },
+					{ name = "luasnip", dup = 0, priority = 100 },
+				}, { { name = "buffer", keyword_length = 3 } }),
 			})
-			cmp.event:on("confirm_done", autopairs.on_confirm_done())
+			--cmp.event:on("confirm_done", autopairs.on_confirm_done())
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {

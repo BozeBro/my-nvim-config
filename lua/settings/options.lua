@@ -11,6 +11,5 @@ opt.cursorline = true -- Highlight the current cursor line
 opt.clipboard = "unnamedplus" -- set generic clipboard for copy paste with "+y
 vim.g.python3_host_prog = 0
 opt.filetype = "unix"
-opt.modifiable = true
 opt.pumheight = 7
 -- opt.autochdir = true

@@ -1,12 +1,15 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		lazy = true,
-		-- priority = 1000,
+		lazy = false,
+		priority = 1000,
 		opts = {
 			style = "night",
 			transparent = true,
 		},
+		config = function(_, opts)
+			require("tokyonight").load(opts)
+		end,
 	},
 	{ "ellisonleao/gruvbox.nvim", lazy = true },
 	{
@@ -26,8 +29,8 @@ return {
 	},
 	{
 		"AlexvZyl/nordic.nvim",
-		lazy = false,
-		priority = 1000,
+		lazy = true,
+		-- priority = 1000,
 		config = function()
 			require("nordic").load()
 		end,

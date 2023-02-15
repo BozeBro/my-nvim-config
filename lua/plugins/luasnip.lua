@@ -8,7 +8,7 @@ return {
 		},
 
 		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip/loaders/from_vscode").lazy_load()
 			local ls = require("luasnip")
 			local s = ls.snippet
 			local t = ls.text_node
@@ -21,11 +21,6 @@ return {
 					i(2, "value"),
 				}),
 			})
-			-- vim.keymap.set({ "i", "s" }, "<c-b>", function()
-			--     if ls.expand_or_jumpable() then
-			--         ls.expand_or_jump()
-			--     end
-			-- )
 		end,
 	},
 }
