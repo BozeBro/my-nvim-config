@@ -16,7 +16,10 @@ map({ "n", "v" }, "<C-c>", "<cmd>vertical resize +5<cr>", { desc = "Increase scr
 map({ "n", "v" }, "<C-x>", "<cmd>vertical resize -5<cr>", { desc = "Decrease screen size" })
 
 map("n", "<leader>e", "<cmd>Telescope file_browser<cr>", { desc = "Open File Explorer" })
-map("n", "<leader>ve", "<C-w>v", { desc = "Open Split Window" })
+map("n", "<leader>vv", "<cmd>below vnew<cr>", { desc = "Open Split Window" })
+map("n", "<leader>vl", "<cmd>above vnew<cr>", { desc = "Open Split Window" })
+map("n", "<leader>hh", "<cmd>above new<cr>", { desc = "Open Horizontal" })
+map("n", "<leader>hb", "<cmd>below new<cr>", { desc = "Open Horizontal" })
 
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" })
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Toggle Horizontal Terminal" })
