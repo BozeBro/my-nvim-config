@@ -93,6 +93,9 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	{ "nvim-treesitter/nvim-treesitter-textobjects" },
+	{ "nvim-treesitter/nvim-treesitter-textobjects",
+		event = "BufReadPost",
+        lazy = true
+},
 	{ "nvim-treesitter/playground", lazy = true, key = { "TSPlaygroundToggle" } },
 }

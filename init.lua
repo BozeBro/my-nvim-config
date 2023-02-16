@@ -12,6 +12,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("settings")
 require("lazy").setup("plugins")
--- require("lazy").setup("test")
--- vim.cmd([[colorscheme catppuccin]])
-vim.cmd([[colorscheme nordic]])
+vim.cmd [[colorscheme nordic]]

@@ -1,8 +1,10 @@
 return {
-    {
-        "akinsho/bufferline.nvim",
-        event = "BufEnter",
-        version = "v3*",
-        config = true,
-    },
+	{
+		"akinsho/bufferline.nvim",
+		version = "v3*",
+        opts = {
+
+            -- options = { mode = "tabs" }
+        },
+	},
 }
