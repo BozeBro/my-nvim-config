@@ -19,7 +19,7 @@ o.smartcase = true
 
 -- Decrease update time
 o.updatetime = 250
-wo.signcolumn = "yes"
+o.signcolumn = "yes"
 
 -- Set colorscheme
 o.termguicolors = true
