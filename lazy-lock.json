@@ -37,6 +37,7 @@
   "persistence.nvim": { "branch": "main", "commit": "d8a3eda0e19b4d5f3180fc832c25baab1709f2a1" },
   "playground": { "branch": "master", "commit": "4044b53c4d4fcd7a78eae20b8627f78ce7dc6f56" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
+  "scope.nvim": { "branch": "main", "commit": "2db6d31de8e3a98d2b41c0f0d1f5dc299ee76875" },
   "telescope.nvim": { "branch": "master", "commit": "203bf5609137600d73e8ed82703d6b0e320a5f36" },
   "toggleterm.nvim": { "branch": "main", "commit": "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" },
   "tokyonight.nvim": { "branch": "main", "commit": "a0abe53df53616d13da327636cb0bcac3ea7f5af" },
