@@ -17,8 +17,8 @@ return {
 				{ desc = "File grep in current buffer" },
 			},
 			{ "<leader>sk", '<cmd>lua require"telescope.builtin".keymaps()<cr>', { desc = "Search Keymaps" } },
-			{ "leaderts", "cmdTelescopecr", desc = { "Open Telescope" } },
-			{ "leadergf", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
+			{ "<leader>ts", "cmdTelescopecr", desc = { "Open Telescope" } },
+			{ "<leader>gf", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
 			{
 				"<leader>bf",
 				"<cmd>Telescope file_browser<cr>",
@@ -29,6 +29,7 @@ return {
 		dependencies = {
 			{ "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make", name = "fzf" },
 			{ "nvim-telescope/telescope-file-browser.nvim", name = "file_browser" },
+			{ "nvim-lua/plenary.nvim" },
 		},
 		opts = {
 			defaults = {
@@ -55,4 +56,5 @@ return {
 			tele.load_extension("file_browser")
 		end,
 	},
+	{ "nvim-telescope/telescope-file-browser.nvim", name = "file_browser" },
 }
