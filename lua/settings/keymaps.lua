@@ -30,25 +30,20 @@ map({ "n" }, "<c-\\>", "<CMD>ToggleTerm" .. vim.v.count1 .. "<CR>", { silent = t
 map({ "i" }, "<c-\\>", "<ESC><CMD>" .. vim.v.count1 .. "ToggleTerm<cr>", { silent = true })
 
 vim.api.nvim_create_autocmd("TermEnter", {
-    pattern = "term://*toggleterm#*",
-    callback = function()
-        map("t", "<c-\\>", "<cmd>" .. vim.v.count1 .. "ToggleTerm<cr>", { silent = true })
-    end,
+	pattern = "term://*toggleterm#*",
+	callback = function()
+		map("t", "<c-\\>", "<cmd>" .. vim.v.count1 .. "ToggleTerm<cr>", { silent = true })
+	end,
 })
 function _G.set_terminal_keymaps()
-    local opts = { buffer = 0 }
-    map("t", "<C-]>", [[<C-\><C-n>]], opts)
-    map("t", "jk", [[<C-\><C-n>]], opts)
-    map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-    map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-    map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-    map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+	local opts = { buffer = 0 }
+	map("t", "<C-]>", [[<C-\><C-n>]], opts)
+	map("t", "jk", [[<C-\><C-n>]], opts)
+	map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+	map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+	map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+	map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 end
-
---       vim.cmd("autocmd TermEnter term://*toggleterm#*
--- \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>")
---       vim.cmd("nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>")
---       vim.cmd("inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>")
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 -- map({ "n", "i" }, "<c-\\>", )
@@ -57,24 +52,24 @@ map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Go to next Buffer" })
 map("n", "<leader>bb", "<cmd>bprev<cr>", { desc = "Go to previous Buffer" })
 map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Close current buffer" })
 function EscapePair()
-    local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
-    local line = vim.api.nvim_get_current_line()
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    local after = line:sub(col + 1, -1)
-    local closer_col = #after + 1
-    local closer_i = nil
-    for i, closer in ipairs(closers) do
-        local cur_index, _ = after:find(closer)
-        if cur_index and (cur_index < closer_col) then
-            closer_col = cur_index
-            closer_i = i
-        end
-    end
-    if closer_i then
-        vim.api.nvim_win_set_cursor(0, { row, col + closer_col })
-    else
-        vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-    end
+	local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
+	local line = vim.api.nvim_get_current_line()
+	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local after = line:sub(col + 1, -1)
+	local closer_col = #after + 1
+	local closer_i = nil
+	for i, closer in ipairs(closers) do
+		local cur_index, _ = after:find(closer)
+		if cur_index and (cur_index < closer_col) then
+			closer_col = cur_index
+			closer_i = i
+		end
+	end
+	if closer_i then
+		vim.api.nvim_win_set_cursor(0, { row, col + closer_col })
+	else
+		vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+	end
 end
 
 vim.api.nvim_set_keymap("i", "<C-l>", "<cmd>lua EscapePair()<CR>", { noremap = true, silent = true })

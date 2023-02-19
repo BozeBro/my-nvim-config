@@ -11,11 +11,19 @@ return {
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffer" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find help" },
 			{ "<leader>fo", '<cmd>lua require"telescope.builtin".oldfiles()<cr>', { desc = "Find Old files" } },
-			{ "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "File grep in current buffer" } },
+			{
+				"<leader>/",
+				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
+				{ desc = "File grep in current buffer" },
+			},
 			{ "<leader>sk", '<cmd>lua require"telescope.builtin".keymaps()<cr>', { desc = "Search Keymaps" } },
 			{ "leaderts", "cmdTelescopecr", desc = { "Open Telescope" } },
 			{ "leadergf", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
-			{ "<leader>bf", "<cmd>Telescope file_browser<cr>", { desc = "File Browser", noremap = true } },
+			{
+				"<leader>bf",
+				"<cmd>Telescope file_browser<cr>",
+				{ desc = "File Browser", noremap = true },
+			},
 			{ "<leader>ft", "<cmd>lua require'telescope.builtin'.treesitter()<cr>", { desc = "Treesitter" } },
 		},
 		dependencies = {

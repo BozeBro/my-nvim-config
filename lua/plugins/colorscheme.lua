@@ -11,7 +11,7 @@ return {
             require("tokyonight").load(opts)
         end,
     },
-    { "ellisonleao/gruvbox.nvim",    lazy = true },
+    { "ellisonleao/gruvbox.nvim", lazy = true },
     {
         "https://github.com/catppuccin/nvim",
         name = "catppuccin",
@@ -19,10 +19,8 @@ return {
         opts = {
             flavour = "macchiato",
             -- flavour = "latte",
-
             -- transparent_background = true,
         },
-        -- priority = 1000,
         config = function(_, opts)
             require("catppuccin").setup(opts)
         end,
@@ -30,7 +28,6 @@ return {
     {
         "AlexvZyl/nordic.nvim",
         lazy = true,
-        -- priority = 1000,
         config = function()
             require("nordic").load()
         end,
