@@ -24,6 +24,7 @@ return {
 					theme = "dropdown",
 					hijack_netrw = true,
 					depth = false,
+					use_fd = false,
 				},
 				path = "%:p:h",
 			},
