@@ -87,3 +87,19 @@ map("n", "<leader>8", "8gt", { desc = "Go to first tab" })
 map("n", "<leader>9", "9gt", { desc = "Go to first tab" })
 map("n", "<leader>tn", "<cmd>tabe<cr>", { desc = "Open new tab" })
 map("n", "<leader>tc", "<cmd>tabc<cr>", { desc = "Close tab" })
+
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "File grep" })
+map("n",
+    "<leader>fb",
+    "<cmd>Telescope buffers<cr>",
+    { desc = "Find buffer" }
+)
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Find help" })
+map("n", "<leader>fo", '<cmd>lua require"telescope.builtin".oldfiles()<cr>', { desc = "Find Old files" })
+map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "File grep in current buffer" })
+map("n", "<leader>sk", '<cmd>lua require"telescope.builtin".keymaps()<cr>', { desc = "Search Keymaps" })
+map("n", "<leader>ts", "<cmd>Telescope<cr>", { desc = "Open Telescope" })
+map("n", "<leader>gf", "<cmd>Telescope git_files<cr>", { desc = "Git Files" })
+map("n", "<leader>bf", "<cmd>Telescope file_browser use_fd=false<cr>", { desc = "File Browser", noremap = true })
+map("n", "<leader>ft", "<cmd>lua require'telescope.builtin'.treesitter()<cr>", { desc = "Treesitter" })
