@@ -1,3 +1,3 @@
 return {
-    { "nvim-lualine/lualine.nvim", config = true, event = "VeryLazy" },
+    { "nvim-lualine/lualine.nvim", config = true, event = "BufReadPre" },
 }
