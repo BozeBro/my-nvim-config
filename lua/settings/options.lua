@@ -10,5 +10,5 @@ opt.spell = true -- Spell check is turned on
 opt.cursorline = true -- Highlight the current cursor line
 opt.clipboard = "unnamedplus" -- set generic clipboard for copy paste with "+y
 opt.filetype = "unix"
-opt.pumheight = 7
+opt["pumheight"] = 7
 -- opt.autochdir = true
