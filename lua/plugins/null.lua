@@ -10,7 +10,8 @@ return {
 					null_ls.builtins.formatting.stylua.with({
 						filestypes = { "lua", "luau" },
 					}),
-					null_ls.builtins.completion.spell,
+					null_ls.builtins.formatting.google_java_format,
+					-- null_ls.builtins.completion.spell,
 					null_ls.builtins.formatting.goimports.with({
 						filetypes = { "go" },
 						command = { "goimports" },
