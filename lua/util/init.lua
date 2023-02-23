@@ -2,6 +2,7 @@ local M = {}
 M.map = vim.keymap.set
 M.api = vim.api
 M.buf = vim.lsp.buf
+M.global = vim.g
 M.keymaps = {}
 M.mapKeys = function(keys)
 	for _, key in pairs(keys) do

@@ -258,6 +258,7 @@ return {
 		"<cmd>Telescope<cr>",
 		{ desc = "Open Telescope" },
 	},
+
 	{ "n", "<leader>gf", "<cmd>Telescope git_files<cr>", { desc = "Git Files" } },
 	{
 		"n",
