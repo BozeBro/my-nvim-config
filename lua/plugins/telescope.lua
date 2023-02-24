@@ -29,6 +29,13 @@ return {
 				path = "%:p:h",
 			},
 		},
+		init = function()
+			vim.keymap.set("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" })
+
+			vim.keymap.set("n", "<leader>rl", "<cmd>Telescope repo list<cr>", { desc = "open repositories" })
+			vim.keymap.set("n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" })
+			-- code
+		end,
 		config = function(_, opts)
 			local tele = require("telescope")
 			---@diagnostic disable-next-line: missing-parameter
@@ -43,9 +50,6 @@ return {
 			-- Playtest for now
 			-- Change direct when opening a new project
 			g["rooter_cd_cmd"] = "lcd"
-			vim.keymap.set("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" })
-
-			vim.keymap.set("n", "<leader>rl", "<cmd>Telescope repo list<cr>", { desc = "open repositories" })
 		end,
 	},
 	{ "cljoly/telescope-repo.nvim", lazy = true, dependencies = { "vim-rooter" } },
