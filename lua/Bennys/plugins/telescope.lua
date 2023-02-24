@@ -46,7 +46,7 @@ return {
 			tele.load_extension("noice")
 			require("telescope").load_extension("zoxide")
 			tele.load_extension("repo")
-			local g = require("util").global
+			local g = require("Bennys.util").global
 			-- Playtest for now
 			-- Change direct when opening a new project
 			g["rooter_cd_cmd"] = "lcd"

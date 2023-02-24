@@ -1,4 +1,4 @@
-local util = require("util")
+local util = require("Bennys.util")
 local map = util.map
 local buf = util.buf
 local api = util.api
