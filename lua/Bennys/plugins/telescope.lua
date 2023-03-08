@@ -17,14 +17,18 @@ return {
 				layout_config = {
 					prompt_position = "top",
 				},
+				mappings = {
+					n = {
+						-- ["jj"] = require("telescope.actions").delete_buffer,
+					},
+				},
 			},
-			mappings = {},
 			extensions = {
 				file_browser = {
 					theme = "dropdown",
 					hijack_netrw = true,
 					depth = false,
-					use_fd = false,
+					-- use_fd = true,
 				},
 				path = "%:p:h",
 			},
@@ -38,6 +42,7 @@ return {
 		end,
 		config = function(_, opts)
 			local tele = require("telescope")
+
 			---@diagnostic disable-next-line: missing-parameter
 			tele.setup(opts)
 			tele.load_extension("fzf")

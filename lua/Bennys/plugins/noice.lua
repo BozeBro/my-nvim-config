@@ -25,11 +25,12 @@ return {
                 lsp_doc_border = false, -- add a border to hover docs and signature help
             },
         },
-    },
-    {
-        "rcarriga/nvim-notify",
-        opts = {
-            background_colour = "#000000",
+        ,
+        {
+            "rcarriga/nvim-notify",
+            opts = {
+                background_colour = "#000000",
+            },
         },
-    },
+    }
 }

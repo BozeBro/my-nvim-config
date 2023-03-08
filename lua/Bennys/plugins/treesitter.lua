@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = { "nvim-treesitter/playground" },
 		event = "BufReadPost",
 		opts = {
 			ensure_installed = { "c", "vim", "help", "lua", "cpp", "go", "python", "javascript", "typescript" },
@@ -93,9 +94,6 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	{ "nvim-treesitter/nvim-treesitter-textobjects",
-		event = "BufReadPost",
-        lazy = true
-},
+	{ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPost", lazy = true },
 	{ "nvim-treesitter/playground", lazy = true, key = { "TSPlaygroundToggle" } },
 }

@@ -157,10 +157,16 @@ return {
 	},
 	-- map({ "i", "t" }, "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true }),
 	{
-		{ "i", "t" },
-		"jj",
+		{ "i", "v" },
+		"jk",
 		"<Esc>",
 		{ desc = "Escape vim", silent = true, noremap = true },
+	},
+	{
+		"n",
+		"jk",
+		"i",
+		{ desc = "Enter Insert Mode", noremap = true },
 	},
 	-- map("n", "<C-[>", "i", { desc = "Enter Insert Mode" })
 	{
