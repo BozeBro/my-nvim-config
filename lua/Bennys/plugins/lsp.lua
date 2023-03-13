@@ -1,7 +1,6 @@
-local util = require("Bennys.util")
-local map = util.map
-local buf = util.buf
-local api = util.api
+local map = vim.keymap.set
+local buf = vim.lsp.buf
+local api = vim.api
 return {
 	{
 		event = "BufReadPre",

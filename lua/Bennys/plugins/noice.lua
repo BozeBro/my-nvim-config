@@ -1,7 +1,9 @@
 return {
+	{ "MunifTanjim/nui.nvim" },
+
 	{
 		"folke/noice.nvim",
-		lazy = true,
+		lazy = false,
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
@@ -25,11 +27,12 @@ return {
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 		},
-		{
-			"rcarriga/nvim-notify",
-			opts = {
-				background_colour = "#000000",
-			},
+		config = true,
+	},
+	{
+		"rcarriga/nvim-notify",
+		opts = {
+			background_colour = "#000000",
 		},
 	},
 }

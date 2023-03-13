@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 return {
 	{ "nvim-lua/plenary.nvim", lazy = true },
 	{
@@ -10,6 +12,7 @@ return {
 			{ "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make", name = "fzf" },
 			{ "nvim-telescope/telescope-file-browser.nvim", name = "file_browser" },
 			{ "nvim-lua/plenary.nvim" },
+			-- { "folke/noice.nvim" },
 		},
 		opts = {
 			defaults = {
@@ -34,10 +37,10 @@ return {
 			},
 		},
 		init = function()
-			vim.keymap.set("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" })
+			map("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" })
 
-			vim.keymap.set("n", "<leader>rl", "<cmd>Telescope repo list<cr>", { desc = "open repositories" })
-			vim.keymap.set("n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" })
+			map("n", "<leader>rl", "<cmd>Telescope repo list<cr>", { desc = "open repositories" })
+			map("n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" })
 			-- code
 		end,
 		config = function(_, opts)
@@ -51,9 +54,9 @@ return {
 			tele.load_extension("noice")
 			require("telescope").load_extension("zoxide")
 			tele.load_extension("repo")
-			local g = require("Bennys.util").global
 			-- Playtest for now
 			-- Change direct when opening a new project
+			local g = vim.g
 			g["rooter_cd_cmd"] = "lcd"
 		end,
 	},
