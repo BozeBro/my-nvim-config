@@ -28,7 +28,6 @@ return {
 				"<cmd>ToggleTerm direction=tab <cr>",
 				{ desc = "Toggle Tabbed Terminal" },
 			},
-			{ "<leader>tl", "<cmd>TermExec cmd='lazygit' dir=./ direction=float <cr>", { desc = "Toggle Lazygit" } },
 		},
 	},
 }
