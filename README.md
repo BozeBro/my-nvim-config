@@ -7,10 +7,7 @@ Nothing new unique plugins atm.
 
 ## TODO
 
-Lazy load Telescope again.
-Make autocmd to load telescope file_browser when going into netrw file
 Potentially put plugin specific commands into files they belong in
-When recording, put recording @register onto left side of lualine instead of the right
 When in a table (lua, python dictionary, json etc.), have a comma be placed after opening brackets
 
 ## Requirements
