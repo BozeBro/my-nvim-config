@@ -1,6 +1,6 @@
 return {
 	{ "nvim-tree/nvim-web-devicons", lazy = true, config = true },
-	{ "yykylechui/nvim-surround", event = "BufEnter", lazy = false, config = true },
+	{ "kylechui/nvim-surround", event = "BufEnter", lazy = false, config = true },
 	{ "tpope/vim-repeat", event = "BufEnter", lazy = true },
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPre", config = true },
 	{

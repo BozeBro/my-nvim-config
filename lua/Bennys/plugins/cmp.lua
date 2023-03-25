@@ -48,7 +48,7 @@ return {
 					---@diagnostic disable-next-line: missing-parameter
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-i>"] = cmp.mapping.confirm({
-						behavior = cmp.SelectBehavior.Replace,
+						behavior = cmp.SelectBehavior.Select,
 						select = true,
 					}),
 					["<Tab>"] = cmp.mapping(function(fallback)
