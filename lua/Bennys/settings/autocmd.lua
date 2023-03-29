@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 api.nvim_create_autocmd("FileType", { pattern = "netrw", command = "Telescope file_browser" })
-api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.format()" })
+-- api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.format()" })
 -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 -- vim.cmd(
 -- [[au FileType * lua << EOF | local parser = vim.treesitter.get_parser(0)  | if parser ~= nil then parser:register_cbs({on_bytes = function () parser:parse() end }) end | EOF ]])

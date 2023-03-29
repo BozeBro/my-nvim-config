@@ -13,4 +13,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("Bennys.settings")
 require("lazy").setup("Bennys.plugins")
--- vim.cmd([[colorscheme tokyonight]])
+-- vim.cmd([[colorscheme kangawa]])
