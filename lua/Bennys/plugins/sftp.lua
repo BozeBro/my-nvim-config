@@ -1,6 +1,7 @@
 return {
     {
         "dcampos/nvim-sftp-sync",
+        enabled = false,
         build = ":UpdateRemotePlugins",
         init = function()
             local server = {

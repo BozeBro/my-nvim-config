@@ -3,7 +3,7 @@ return {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
-            local sources = { null_ls.builtins.formatting.stylua }
+            local sources = { null_ls.builtins.formatting.stylua, null_ls.builtins.formatting.black }
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             null_ls.setup({
                 -- you can reuse a shared lspconfig on_attach callback here

@@ -1,3 +1,31 @@
+-- Some code I found online
+-- Finds the nearest closer and will then escape it.
+
+function EscapePair()
+    local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
+    local line = vim.api.nvim_get_current_line()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local after = line:sub(col + 1, -1)
+    local closer_col = #after + 1
+    local closer_i = nil
+    for i, closer in ipairs(closers) do
+        local cur_index, _ = after:find(closer)
+        if cur_index and (cur_index < closer_col) then
+            closer_col = cur_index
+            closer_i = i
+        end
+    end
+    if closer_i then
+        vim.api.nvim_win_set_cursor(0, { row, col + closer_col })
+        return true
+    else
+        vim.api.nvim_win_set_cursor(0, { row, col })
+        return false
+    end
+end
+
+-- Similar to EscapePair but goes backwards
+
 return {
 
     {
@@ -18,6 +46,32 @@ return {
             local cmp = require("cmp")
             local luasnip = require("luasnip")
             local lspkind = require("lspkind")
+            function EscapePairBackward()
+                local closers = { "%(", "%[", "%{", "<", "'", '"', "`", "," }
+                local line = vim.api.nvim_get_current_line()
+                local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+                local after = line:sub(1, col)
+                local closer_col = -1
+                local closer_i = nil
+                for i, closer in ipairs(closers) do
+                    -- regex = x[^x]*$ == Find first occurence of x
+                    -- where there is no x after it. Search until current position
+                    local regex = closer .. "[^" .. closer .. "]*$"
+                    local cur_index, _ = after:find(regex)
+                    if cur_index and (cur_index > closer_col) then
+                        closer_col = cur_index
+                        closer_i = i
+                    end
+                end
+                if closer_i then
+                    vim.api.nvim_win_set_cursor(0, { row, closer_col - 1 })
+                    return true
+                else
+                    vim.api.nvim_win_set_cursor(0, { row, col })
+                    return false
+                end
+            end
+
             cmp.setup({
                 preselect = cmp.PreselectMode.None,
                 formatting = {
@@ -55,14 +109,18 @@ return {
                         if luasnip.expand_or_jumpable() then
                             luasnip.expand_or_jump()
                         else
-                            fallback()
+                            if not EscapePair() then
+                                fallback()
+                            end
                         end
                     end, { "i", "s" }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    ["<S-Tab>"] = cmp.mapping(function(_)
                         if luasnip.jumpable(-1) then
                             luasnip.jump(-1)
                         else
-                            fallback()
+                            if not EscapePairBackward() then
+                                return "<Nop>"
+                            end
                         end
                     end, { "i", "s" }),
                     ["<c-j>"] = cmp.mapping(function(fallback)
