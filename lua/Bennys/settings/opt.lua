@@ -28,3 +28,7 @@ o.termguicolors = true
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 o.hidden = true
+-- vim.o.omnifunc = vim.lsp.omnifunc
+-- vim.cmd([[set rtp+=<SHARE_DIR>/merlin/vim]])
+-- local newpath = "/Users/benedictozua/.opam/program-repair/share/ocp-indent/vim," .. o.rtp
+-- o.rtp = newpath

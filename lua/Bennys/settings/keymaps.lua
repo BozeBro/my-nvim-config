@@ -24,7 +24,7 @@ return {
         { expr = true, silent = true, desc = "remap for dealing with word wrap" },
     },
     {
-        "n",
+        "i",
         "<C-l>",
         "<Tab>",
         { silent = true, noremap = true },
