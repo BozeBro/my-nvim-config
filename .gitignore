@@ -4,3 +4,4 @@ test/
 lazy-lock.json
 lazy-lock*
 *.orig
+dev/
