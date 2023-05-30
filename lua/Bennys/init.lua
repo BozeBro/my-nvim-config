@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("Bennys.settings")
-require("lazy").setup("Bennys.plugins", {
+local newOpt = {
 	performance = {
 		cache = {
 			enabled = true,
@@ -35,5 +35,7 @@ require("lazy").setup("Bennys.plugins", {
 			},
 		},
 	},
-})
+}
+local lazy = require("lazy")
+lazy.setup("Bennys.plugins", newOpt)
 -- vim.cmd([[colorscheme kangawa]])

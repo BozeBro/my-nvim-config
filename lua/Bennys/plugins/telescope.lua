@@ -52,7 +52,8 @@ return {
 			tele.load_extension("file_browser")
 			tele.load_extension("notify")
 			tele.load_extension("noice")
-			require("telescope").load_extension("zoxide")
+			tele.load_extension("harpoon")
+			tele.load_extension("zoxide")
 			tele.load_extension("repo")
 			-- Playtest for now
 			-- Change direct when opening a new project

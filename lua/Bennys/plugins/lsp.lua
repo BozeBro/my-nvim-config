@@ -19,31 +19,55 @@ return {
 				-- Mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				map("n", "gD", buf.declaration, bufopts)
-				map("n", "gd", buf.definition, bufopts)
-				map("n", "K", buf.hover, bufopts)
-				map("n", "gi", buf.implementation, bufopts)
-				map("n", "<C-k>", buf.signature_help, bufopts)
-				map("n", "<leader>za", buf.add_workspace_folder, bufopts)
-				map("n", "<leader>zr", buf.remove_workspace_folder, bufopts)
-				map("n", "<leader>zl", function()
-					print(vim.inspect(buf.list_workspace_folders()))
-				end, bufopts)
-				map("n", "<leader>D", buf.type_definition, bufopts)
-				map("n", "<leader>rn", buf.rename, bufopts)
-				map("n", "<leader>ca", buf.code_action, bufopts)
-				map("n", "gr", buf.references, bufopts)
-				map("n", "<leader>f", function()
-					buf.format({ async = true })
-				end, bufopts)
+				local combine = function(a, b)
+					return vim.tbl_deep_extend("force", a, b)
+				end
+				local settings = {
+					{
+						"n",
+						"gD",
+						buf.declaration,
+						combine(bufopts, { desc = "Go to declaration" }),
+					},
+					{ "n", "gd", buf.definition, combine(bufopts, { desc = "Go to Definition" }) },
+					{ "n", "K", buf.hover, bufopts },
+					{ "n", "<C-k>", buf.signature_help, bufopts },
+					{ "n", "<leader>za", buf.add_workspace_folder, bufopts },
+					{ "n", "<leader>zr", buf.remove_workspace_folder, bufopts },
+					{
+						"n",
+						"<leader>zl",
+						function()
+							print(vim.inspect(buf.list_workspace_folders()))
+						end,
+						bufopts,
+					},
+					{
+						"n",
+						"<leader>f",
+						function()
+							buf.format({ async = true })
+						end,
+						{ desc = "Format file" },
+					},
+					{ "n", "<leader>D", buf.type_definition, bufopts },
+					{ "n", "<leader>rn", buf.rename, bufopts },
+					{ "n", "<leader>ca", buf.code_action, bufopts },
+					{ "n", "gr", buf.references, bufopts },
+					{ "n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>" },
+					{ "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
+					{ "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>" },
+				}
+				for _, table in pairs(settings) do
+					local nTable = combine(bufopts, table)
+					map(unpack(nTable))
+				end
+
 				-- Show diagnostics in a floating window
-				map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
 
 				-- Move to the previous diagnostic
-				map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 
 				-- Move to the next diagnostic
-				map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
 			end
 			local lsp_flags = {}
 			for _, v in ipairs(servers) do

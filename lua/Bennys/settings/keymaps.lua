@@ -89,7 +89,7 @@ return {
 	},
 	{
 		"n",
-		"<leader>hb",
+		"<leader>hl",
 		"<cmd>below new<cr>",
 		{ desc = "Open Horizontal" },
 	},
@@ -230,7 +230,9 @@ return {
 	{
 		"n",
 		"<leader>/",
-		"<cmd>Telescope current_buffer_fuzzy_find<cr>",
+		function()
+			require("telescope.builtin").current_buffer_fuzzy_find()
+		end,
 		{ desc = "File grep in current buffer" },
 	},
 	{
@@ -258,6 +260,12 @@ return {
 		"<leader>ft",
 		"<cmd>lua require'telescope.builtin'.treesitter()<cr>",
 		{ desc = "Treesitter" },
+	},
+	{
+		"n",
+		"<leader>fm",
+		"<cmd>Telescope harpoon marks<cr>",
+		{ desc = "Telescope Marks" },
 	},
 	{ "n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" } },
 }
