@@ -69,13 +69,21 @@ return {
 		},
 	},
 
-	{
-		"sindrets/diffview.nvim",
-		keys = { "<leader>", "dvo", "dvc" },
-		config = function()
-			local map = vim.keymap.set
-			map("n", "<leader>dvo", "<cmd>DiffviewOpen<cr>", { desc = "Open Diff Viewer" })
-			map("n", "<leader>dvc", "<cmd>DiffviewClose<cr>", { desc = "Close Diff Viewer" })
-		end,
-	},
+    {
+        "sindrets/diffview.nvim",
+        keys = { "<leader>dfo", "<leader>dfc" },
+        config = function()
+            local map = vim.keymap.set
+            map("n", "<leader>dfo", "<cmd>DiffviewOpen<cr>", { desc = "Open Diff Viewer" })
+            map("n", "<leader>dfc", "<cmd>DiffviewClose<cr>", { desc = "Close Diff Viewer" })
+        end,
+    },
+    {
+        "rhysd/git-messenger.vim",
+        config = function()
+            local map = vim.keymap.set
+            map("n", "<leader>gmo", "<cmd>GitMessenger<cr>", { desc = "Git Messenger Open" })
+            map("n", "<leader>gmc", "<cmd>GitMessengerClose<cr>", { desc = "Git Messenger Close" })
+        end,
+    },
 }
