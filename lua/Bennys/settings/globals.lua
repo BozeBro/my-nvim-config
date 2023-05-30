@@ -5,6 +5,7 @@ g.completeopt = "menu,menuone,noinsert,noselect"
 -- [[ Basic Keymaps ]]
 g.mapleader = " "
 g.maplocalleader = " "
+g.autoindent = false
 -- Keep directory as the starting directory
 g.netrw_keepdir = 0
 -- open files in new buffers without saving changes to disk
