@@ -37,6 +37,13 @@ return {
             map("n", "<leader>dso", dap.step_over)
             map("n", "<leader>dsi", dap.step_into)
             map("n", "<leader>dr", dap.repl.open)
+            map("n", "<leader>dh", function ()
+                require("dap.ui.widgets").hover()
+            end, {desc = "Hover DBG"})
+            map("n", "<leader>dp", function ()
+                require("dap.ui.widgets").preview()
+            end, {desc = "Preview DBG"})
+            map("n", "<leader>dr", dap.repl.open)
             dap.adapters.codelldb = {
                 type = "server",
                 port = "${port}",
