@@ -22,25 +22,33 @@ return {
 				local combine = function(a, b)
 					return vim.tbl_deep_extend("force", a, b)
 				end
+				local dscr = function(a)
+					return vim.tbl_deep_extend("force", bufopts, { desc = a })
+				end
 				local settings = {
 					{
 						"n",
 						"gD",
 						buf.declaration,
-						combine(bufopts, { desc = "Go to declaration" }),
+						combine(bufopts, { desc = "[LSP] Go to declaration" }),
 					},
-					{ "n", "gd", buf.definition, combine(bufopts, { desc = "Go to Definition" }) },
-					{ "n", "K", buf.hover, bufopts },
-					{ "n", "<C-k>", buf.signature_help, bufopts },
-					{ "n", "<leader>za", buf.add_workspace_folder, bufopts },
-					{ "n", "<leader>zr", buf.remove_workspace_folder, bufopts },
+					{
+						"n",
+						"gd",
+						buf.definition,
+						combine(bufopts, { desc = "[LSP] Go to Definition" }),
+					},
+					{ "n", "K", buf.hover, dscr("[LSP] Hover definition") },
+					{ "n", "<C-k>", buf.signature_help, dscr("[LSP] Signature Help") },
+					{ "n", "<leader>za", buf.add_workspace_folder, dscr("[LSP] Add Workspace Folder") },
+					{ "n", "<leader>zr", buf.remove_workspace_folder, dscr("[LSP] Remove Workspace Folder") },
 					{
 						"n",
 						"<leader>zl",
 						function()
 							print(vim.inspect(buf.list_workspace_folders()))
 						end,
-						bufopts,
+						dscr("[LSP] List workspace Folders"),
 					},
 					{
 						"n",
@@ -48,18 +56,34 @@ return {
 						function()
 							buf.format({ async = true })
 						end,
-						{ desc = "Format file" },
+						dscr("Format file"),
 					},
-					{ "n", "<leader>D", buf.type_definition, bufopts },
-					{ "n", "<leader>rn", buf.rename, bufopts },
-					{ "n", "<leader>ca", buf.code_action, bufopts },
-					{ "n", "gr", buf.references, bufopts },
-					{ "n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>" },
-					{ "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
-					{ "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>" },
+					{ "n", "<leader>D", buf.type_definition, dscr("[LSP] Type Definition") },
+					{ "n", "<leader>rn", buf.rename, dscr("[LSP] rename") },
+					{ "n", "<leader>ca", buf.code_action, dscr("[LSP] code Action") },
+					{ "n", "gr", buf.references, dscr("[LSP] references") },
+					{
+						"n",
+						"gl",
+						"<cmd>lua vim.diagnostic.open_float()<cr>",
+						dscr("[LSP] Open Floating Diagnostic"),
+					},
+					{
+						"n",
+						"[d",
+						"<cmd>lua vim.diagnostic.goto_prev()<cr>",
+						dscr("[LSP] Go to Previous Diagnostic"),
+					},
+					{
+						"n",
+						"]d",
+						"<cmd>lua vim.diagnostic.goto_next()<cr>",
+						dscr("[LSP] Go to Next Diagnostic"),
+					},
 				}
 				for _, table in pairs(settings) do
 					local nTable = combine(bufopts, table)
+					---@diagnostic disable-next-line: param-type-mismatch
 					map(unpack(nTable))
 				end
 

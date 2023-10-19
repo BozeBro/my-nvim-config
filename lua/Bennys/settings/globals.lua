@@ -10,3 +10,5 @@ g.autoindent = false
 g.netrw_keepdir = 0
 -- open files in new buffers without saving changes to disk
 g["ft"] = true
+
+g.netrw_liststyle = 3

@@ -1,3 +1,3 @@
 return {
-    { "numToStr/Comment.nvim", config = true, event = "BufReadPost" },
+	{ "numToStr/Comment.nvim", config = true, event = "BufReadPost" },
 }

@@ -30,6 +30,12 @@ return {
 		{ silent = true, noremap = true },
 	},
 	{
+		"i",
+		"<C-S-l>",
+		"<S-Tab>",
+		{ silent = true, noremap = true },
+	},
+	{
 		"n",
 		"j",
 		"v:count == 0 ? 'gj' : 'j'",

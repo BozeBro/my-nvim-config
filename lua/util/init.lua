@@ -7,7 +7,7 @@ M.mapKeys = function(keys)
 		map(unpack(key))
 	end
 end
-M.concatTable = function (src, dst)
+M.concatTable = function(src, dst)
 	for _, v in pairs(src) do
 		table.insert(dst, v)
 	end
