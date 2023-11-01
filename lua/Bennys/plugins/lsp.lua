@@ -3,13 +3,13 @@ local api = vim.api
 local map = vim.keymap.set
 return {
 	{
-		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
+		event = "BufReadPre",
 		dependencies = { "folke/neodev.nvim", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 		config = function()
 			require("neodev").setup()
 			local lspconfig = require("lspconfig")
-			local servers = { "lua_ls", "clangd", "pyright", "gopls" }
+			local servers = { "lua_ls", "clangd", "gopls" }
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local on_attach = function(_, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
@@ -26,6 +26,12 @@ return {
 					return vim.tbl_deep_extend("force", bufopts, { desc = a })
 				end
 				local settings = {
+					{
+						"n",
+						"gi",
+						vim.lsp.buf.implementation,
+						dscr("[LSP] Go to implementation"),
+					},
 					{
 						"n",
 						"gD",
@@ -101,12 +107,40 @@ return {
 					capabilities = capabilities,
 				})
 			end
+
+			lspconfig.pylsp.setup({
+				on_attach = on_attach,
+				flags = lsp_flags,
+				capabilities = capabilities,
+				settings = {
+
+					pylsp = {
+						plugins = {
+							pyflakes = { enabled = false },
+							pylint = { enabled = false },
+							mccabe = { enabled = false },
+							pycodestyle = { enabled = false },
+							pyls_isort = { enabled = true },
+							-- rope_autoimport = { enabled = true },
+							-- rope_completion = { enabled = true },
+						},
+					},
+				},
+			})
+
 			lspconfig.tsserver.setup({
 				on_attach = on_attach,
 				flags = lsp_flags,
 				capabilities = capabilities,
 				filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 				cmd = { "typescript-language-server", "--stdio" },
+			})
+			lspconfig.millet.setup({
+				on_attach = on_attach,
+				flags = lsp_flags,
+				capabilities = capabilities,
+				filetypes = { "sml", "cm", "sig", "mlb" },
+				cmd = { "/Users/benedictozua/millet/target/release/millet-ls" },
 			})
 			-- local select_opts = {behavior = cmp.SelectBehavior.Select} ??
 			local mslsp = require("mason-lspconfig")

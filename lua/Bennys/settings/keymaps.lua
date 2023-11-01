@@ -15,6 +15,26 @@
 -- end, { silent = true, expr = true })
 
 return {
+	-- {
+	-- {"n", "v"},
+	-- "ddd",
+	-- function ()
+	--     vim.cmd[[CFilter! matchstr(getline('.'), '.\{-}\ze<bar>')]]
+	-- end,
+	-- {}},
+	-- },
+
+	{
+		"i",
+		"<S-Enter>",
+		function()
+			local ls = require("luasnip")
+			if ls.expand_or_jumpable() then
+				ls.expand_or_jump()
+			end
+		end,
+		{ desc = "Force expand or jump for Enter" },
+	},
 	{ { "n", "v" }, "<Space>", "<Nop>", { silent = true, desc = "Make <Leader> behave as expected" } },
 	{ "n", "<S-Tab>", "<Nop>", { silent = true } },
 	{
@@ -51,12 +71,25 @@ return {
 	},
 	{
 		{ "n" },
-		"<leader>x",
+		"<leader>xx",
 		"<cmd>wq<cr>",
 		{ desc = "Quit and Save" },
 	},
 
 	-- Resize the screen,
+	{
+		{ "n" },
+		"<C-0>",
+		"<cmd>resize +5<cr>",
+		{},
+	},
+	{
+
+		{ "n" },
+		"<C-9>",
+		"<cmd>resize -5<cr>",
+		{},
+	},
 	{
 		{ "n", "v" },
 		"<C-c>",
@@ -144,17 +177,20 @@ return {
 	},
 	-- map({ "i", "t" }, "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true }),
 	{
-		{ "i", "v" },
-		"jk",
+		{ "i", "n", "v" },
+		"<c-[>",
 		"<Esc>",
-		{ desc = "Escape vim", silent = true, noremap = true },
+		{
+			desc = "Escape vim",
+			silent = true, --[[ , noremap = true ]]
+		},
 	},
-	{
-		"n",
-		"jk",
-		"i",
-		{ desc = "Enter Insert Mode", noremap = true },
-	},
+	-- {
+	-- 	"n",
+	-- 	"<c-[>",
+	-- 	"<ESC>",
+	-- 	{ desc = "Enter Insert Mode", noremap = true },
+	-- },
 	-- map("n", "<C-[>", "i", { desc = "Enter Insert Mode" })
 	{
 		"n",
@@ -217,7 +253,7 @@ return {
 		{ desc = "Open new tab" },
 	},
 	{ "n", "<leader>tc", "<cmd>tabc<cr>", { desc = "Close tab" } },
-	{ "n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" } },
+	{ "n", "<leader>ff", "<cmd>Telescope find_files find_command=fd,--hidden<cr>", { desc = "Find Files" } },
 	{ "n", "<leader>fn", "<cmd>Telescope noice<cr>", { desc = "Open messages" } },
 	{ "n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "File grep" } },
 	{

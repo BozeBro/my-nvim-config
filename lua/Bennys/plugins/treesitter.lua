@@ -6,6 +6,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
 		opts = {
+			indent = { enabled = false },
 			ensure_installed = {
 				"c",
 				"vim",
@@ -42,7 +43,7 @@ return {
 						["if"] = "@function.inner",
 						["ac"] = "@class.outer",
 						["ic"] = "@class.inner",
-						["iz"] = "@statement.outer",
+						["az"] = "@statement.outer",
 						["il"] = "@loop.inner",
 						["al"] = "@loop.outer",
 						["id"] = "@conditional.inner",

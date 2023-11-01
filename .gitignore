@@ -1,8 +1,8 @@
 test/
-*.json
 *.lu
 lazy-lock.json
 lazy-lock*
 *.orig
 dev/
 *.bak
+.git

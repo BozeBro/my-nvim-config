@@ -1,6 +1,13 @@
 local M = {}
 local map = vim.keymap.set
+M.syncDefault = function()
+	return "Rsync"
+end
 M.keymaps = {}
+function M.empty(table)
+	return table == nil or next(table) == nil
+end
+
 M.mapKeys = function(keys)
 	for _, key in pairs(keys) do
 		-- print(unpack(key))

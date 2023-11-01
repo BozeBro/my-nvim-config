@@ -27,7 +27,10 @@ return {
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 		},
-		config = true,
+		config = function(_, opts)
+			local noice = require("noice")
+			noice.setup(opts)
+		end,
 	},
 	{
 		"rcarriga/nvim-notify",

@@ -1,5 +1,4 @@
 local map = vim.keymap.set
-local api = vim.api
 local function augroup(name)
 	return vim.api.nvim_create_augroup("Bennys " .. name, { clear = true })
 end
