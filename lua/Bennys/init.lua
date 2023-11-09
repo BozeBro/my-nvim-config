@@ -23,13 +23,13 @@ local newOpt = {
 			paths = {}, -- add any custom paths here that you want to includes in the rtp
 			---@type string[] list any plugins you want to disable here
 			disabled_plugins = {
-				"gzip",
+				-- "gzip",
 				-- "matchit",
 				-- "matchparen",
 				-- "netrwPlugin",
 				-- "tarPlugin",
 				-- "tohtml",
-				"tutor",
+				-- "tutor",
 				-- "zipPlugin",
 			},
 		},
@@ -63,3 +63,9 @@ vim.api.nvim_create_autocmd({ "DirChanged" }, {
 	end,
 	-- group = "my_other_autocommands",
 })
+-- vim.lsp.util.apply_text_document_edit = function(text_document_edit, index)
+--   local text_document = text_document_edit.textDocument
+--   local bufnr = vim.uri_to_bufnr(text_document.uri)
+--
+--   vim.lsp.util.apply_text_edits(text_document_edit.edits, bufnr)
+-- end

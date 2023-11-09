@@ -21,7 +21,18 @@ return {
           prompt_position = "top",
         },
         mappings = {
-          -- i = { ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble },
+          i = {
+            ["<c-j>"] = function(bufnum)
+              require("telescope.actions").move_selection_next(bufnum)
+            end,
+
+            ["<c-k"] = function(bufnum)
+              require("telescope.actions").move_selection_previous(bufnum)
+            end,
+            ["<c-;>"] = function(bufnum)
+              require("trouble.providers.telescope").open_with_trouble(bufnum)
+            end,
+          },
           n = {
             ["<c-[>"] = function(bufnum)
               require("telescope.actions").close(bufnum)
@@ -50,18 +61,10 @@ return {
     end,
     config = function(_, opts)
       local tele = require("telescope")
-      local actions = require("telescope.actions")
-      local trouble = require("trouble.providers.telescope")
-      vim.tbl_deep_extend("error", opts, {
-        defaults = {
-          mappings = {
-            i = { ["<c-;>"] = trouble.open_with_trouble },
-            n = { ["<c-;>"] = trouble.open_with_trouble },
-          },
-        },
-      })
+
       ---@diagnostic disable-next-line: missing-parameter
       tele.setup(opts)
+
       tele.load_extension("fzf")
       tele.load_extension("file_browser")
       tele.load_extension("notify")

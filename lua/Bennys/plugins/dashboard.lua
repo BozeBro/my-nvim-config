@@ -1,7 +1,7 @@
 return {
 	{
 		"glepnir/dashboard-nvim",
-		enabled = true,
+		enabled = false,
 		event = "VimEnter",
 		config = function()
 			require("dashboard").setup({
