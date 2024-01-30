@@ -11,6 +11,8 @@ return {
 			local lspconfig = require("lspconfig")
 			local servers = { "lua_ls", "clangd", "gopls" }
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- Quiets warnings about different Unicode formats
+			capabilities.offsetEncoding = { "utf-16" }
 			local on_attach = function(_, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
 				api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -107,6 +109,11 @@ return {
 					capabilities = capabilities,
 				})
 			end
+			lspconfig.cmake.setup({
+				on_attach = on_attach,
+				flags = lsp_flags,
+				capabilities = capabilities,
+			})
 
 			lspconfig.pylsp.setup({
 				on_attach = on_attach,
@@ -132,8 +139,10 @@ return {
 				on_attach = on_attach,
 				flags = lsp_flags,
 				capabilities = capabilities,
-				filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 				cmd = { "typescript-language-server", "--stdio" },
+			})
+			lspconfig.html.setup({
+				cmd = { "/Users/benedictozua/.cargo/bin/htmx-lsp" },
 			})
 			lspconfig.millet.setup({
 				on_attach = on_attach,

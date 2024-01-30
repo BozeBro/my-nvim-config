@@ -110,36 +110,37 @@ return {
 						behavior = cmp.SelectBehavior.Select,
 						select = true,
 					}),
-					["<Tab>"] = cmp.mapping(function(fallback)
+
+					["<C-j>"] = cmp.mapping(function(fallback)
 						if luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s", "n" }),
+					["<C-k>"] = cmp.mapping(function(fallback)
+						if luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s", "n" }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
 						else
 							if not EscapePair() then
 								fallback()
 							end
 						end
-					end, { "i", "s", "n" }),
-					["<S-Tab>"] = cmp.mapping(function(_)
-						if luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							if not EscapePairBackward() then
-								return "<Nop>"
-							end
-						end
-					end, { "i", "s", "n" }),
-					["<c-j>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						else
-							fallback()
-						end
 					end, { "i", "s", "c" }),
-					["<C-k>"] = cmp.mapping(function(fallback)
+					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						else
-							fallback()
+							if not EscapePairBackward() then
+								fallback()
+							end
 						end
 					end, { "i", "s", "c" }),
 				}),

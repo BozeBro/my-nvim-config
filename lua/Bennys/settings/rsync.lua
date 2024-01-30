@@ -3,6 +3,7 @@ local M = {}
 function M.load_launchjs()
 	local path = vim.fn.getcwd() .. "/.nvim/rsync.json"
 	local file = io.open(path, "r")
+	print(path)
 	if not file then
 		return {}
 	end

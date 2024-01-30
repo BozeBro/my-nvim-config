@@ -61,9 +61,7 @@ return {
 					t({ "let", "    " }),
 					i(1, "values"),
 					t({ "", "in", "    " }),
-					i(2, "statement"),
 					t({ "", "end", "" }),
-					i(3),
 				}, {}),
 			})
 
