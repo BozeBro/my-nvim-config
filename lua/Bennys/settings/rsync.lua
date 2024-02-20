@@ -1,4 +1,23 @@
 local util = require("util")
+
+--- Check if a file or directory exists in this path
+function exists(file)
+	local ok, err, code = os.rename(file, file)
+	if not ok then
+		if code == 13 then
+			-- Permission denied, but it exists
+			return true
+		end
+	end
+	return ok, err
+end
+
+--- Check if a directory exists in this path
+function isdir(path)
+	-- "/" works on both Unix and Windows
+	return exists(path .. "/")
+end
+
 local M = {}
 function M.load_launchjs()
 	local path = vim.fn.getcwd() .. "/.nvim/rsync.json"
@@ -12,6 +31,26 @@ function M.load_launchjs()
 	local myTable = vim.json.decode(content)
 
 	return myTable
+end
+
+function M.write_blank(file)
+	if not isdir(util.dir) then
+		ok = os.execute("mkdir " .. util.dir)
+		if ok ~= 0 then
+			print("Error code " .. ok .. "\n")
+			return
+		end
+	end
+	local path = io.open(file, "w+")
+	-- host, hostPath, path
+	local tab = {
+		host = "host",
+		hostPath = "remotePath",
+		path = "path",
+	}
+	---@diagnostic disable-next-line: need-check-nil
+	path:write(vim.fn.json_encode(tab))
+	io.close(path)
 end
 
 function M.getText()
@@ -37,8 +76,13 @@ function M.syncUp()
 	vim.system({
 		"rsync",
 		"-a",
+		---@diagnostic disable-next-line: need-check-nil
 		table["path"],
-		table["host"] .. ":" .. table["hostPath"],
+		---@diagnostic disable-next-line: need-check-nil
+		table["host"]
+			.. ":"
+			---@diagnostic disable-next-line: need-check-nil
+			.. table["hostPath"],
 	}, nil, on_exit)
 end
 
@@ -52,7 +96,12 @@ function M.syncDown()
 	vim.system({
 		"rsync",
 		"-a",
-		table["host"] .. ":" .. table["hostPath"],
+		---@diagnostic disable-next-line: need-check-nil
+		table["host"]
+			.. ":"
+			---@diagnostic disable-next-line: need-check-nil
+			.. table["hostPath"],
+		---@diagnostic disable-next-line: need-check-nil
 		table["path"],
 	}, nil, on_exit)
 end
@@ -62,6 +111,9 @@ end
 -- path -> Local path
 
 vim.api.nvim_create_user_command("RsyncUp", M.syncUp, {})
+vim.api.nvim_create_user_command("RsyncBlank", function()
+	M.write_blank(util.fileLoc)
+end, {})
 vim.api.nvim_create_user_command("RsyncDown", M.syncDown, {})
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = M.syncUp,

@@ -3,6 +3,8 @@ local map = vim.keymap.set
 M.syncDefault = function()
 	return "Rsync"
 end
+M.dir = "./.nvim"
+M.fileLoc = "./.nvim/rsync.json"
 M.keymaps = {}
 function M.empty(table)
 	return table == nil or next(table) == nil

@@ -25,8 +25,6 @@ return {
 		lazy = true,
 		keys = { "f", "F" },
 		config = function()
-			-- local u = require("util")
-			-- u.mapKeys({ { "n", "S", "<Nop>", {} } })
 			local map = vim.keymap.set
 			map("n", "f", "<Plug>(leap-forward-to)")
 			map("n", "F", "<Plug>(leap-backward-to)")
@@ -35,6 +33,7 @@ return {
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
+		enabled = false,
 		---@type Flash.Config
 		opts = {},
     -- stylua: ignore
