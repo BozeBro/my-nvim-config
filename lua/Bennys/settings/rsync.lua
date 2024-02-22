@@ -1,7 +1,7 @@
 local util = require("util")
 
 --- Check if a file or directory exists in this path
-function exists(file)
+local function exists(file)
 	local ok, err, code = os.rename(file, file)
 	if not ok then
 		if code == 13 then
@@ -13,14 +13,14 @@ function exists(file)
 end
 
 --- Check if a directory exists in this path
-function isdir(path)
+local function isdir(path)
 	-- "/" works on both Unix and Windows
 	return exists(path .. "/")
 end
 
 local M = {}
 function M.load_launchjs()
-	local path = vim.fn.getcwd() .. "/.nvim/rsync.json"
+	local path = vim.fn.getcwd() .. "/" .. util.fileLoc
 	local file = io.open(path, "r")
 	print(path)
 	if not file then
@@ -35,7 +35,7 @@ end
 
 function M.write_blank(file)
 	if not isdir(util.dir) then
-		ok = os.execute("mkdir " .. util.dir)
+		local ok = os.execute("mkdir " .. util.dir)
 		if ok ~= 0 then
 			print("Error code " .. ok .. "\n")
 			return

@@ -33,7 +33,7 @@ return {
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
-		enabled = false,
+		-- enabled = false,
 		---@type Flash.Config
 		opts = {},
     -- stylua: ignore
