@@ -57,14 +57,15 @@ function M.getText()
 	return vim.g.syncing
 end
 
-local function on_exit(obj)
+local function on_exit(job_id, exit_code, event)
+	print("Hello")
 	vim.g.syncing = util.syncDefault()
-	if obj.code == 0 then
+	if exit_code == 0 then
 		-- print("Finished Syncing")
 		return
 	end
 	local noice = require("noice")
-	local msg = string.format("bad code: %d\nerror: %s", obj.code, obj.stderr)
+	local msg = string.format("job id: %d bad code: %d\nevent: %s", job_id, exit_code, event)
 	noice.notify(msg, vim.log.levels.ERROR, {})
 end
 function M.syncUp()
@@ -73,17 +74,9 @@ function M.syncUp()
 		return
 	end
 	vim.g.syncing = "Syncing"
-	vim.system({
-		"rsync",
-		"-a",
-		---@diagnostic disable-next-line: need-check-nil
-		table["path"],
-		---@diagnostic disable-next-line: need-check-nil
-		table["host"]
-			.. ":"
-			---@diagnostic disable-next-line: need-check-nil
-			.. table["hostPath"],
-	}, nil, on_exit)
+	---@diagnostic disable-next-line: need-check-nil
+	local cmd = "rsync -a " .. table["path"] .. " " .. table["host"] .. ":" .. table["hostPath"]
+	vim.fn.jobstart(cmd, { on_exit = on_exit })
 end
 
 function M.syncDown()
@@ -93,17 +86,19 @@ function M.syncDown()
 	end
 	print("Start Syncing from Remote")
 	vim.g.syncing = "Syncing"
-	vim.system({
-		"rsync",
-		"-a",
-		---@diagnostic disable-next-line: need-check-nil
-		table["host"]
-			.. ":"
-			---@diagnostic disable-next-line: need-check-nil
-			.. table["hostPath"],
-		---@diagnostic disable-next-line: need-check-nil
-		table["path"],
-	}, nil, on_exit)
+	local cmd = "rsync -a " .. table["host"] .. ":" .. table["hostPath"] .. " " .. table["path"]
+	vim.fn.jobstart(cmd, { on_exit = on_exit })
+	-- vim.system({
+	-- 	"rsync",
+	-- 	"-a",
+	-- 	---@diagnostic disable-next-line: need-check-nil
+	-- 	table["host"]
+	-- 		.. ":"
+	-- 		---@diagnostic disable-next-line: need-check-nil
+	-- 		.. table["hostPath"],
+	-- 	---@diagnostic disable-next-line: need-check-nil
+	-- 	table["path"],
+	-- }, nil, on_exit)
 end
 
 -- host -> Remote host
