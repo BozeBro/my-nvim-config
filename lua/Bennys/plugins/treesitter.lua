@@ -19,6 +19,7 @@ return {
 				"typescript",
 				"markdown",
 				"markdown_inline",
+				"regex",
 			},
 			sync_install = false,
 			highlight = { enable = true, additional_vim_regex_highlighting = false },

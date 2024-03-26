@@ -1,9 +1,10 @@
 return {
+	{ "nvim-neotest/nvim-nio" },
 	{
 		"rcarriga/nvim-dap-ui",
 		lazy = true,
 		keys = { "<leader>dt" },
-		dependencies = { "mfussenegger/nvim-dap" },
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = function(_, opts)
 			local dapui = require("dapui")
 			dapui.setup(opts)
@@ -28,10 +29,10 @@ return {
 		config = function()
 			local dap = require("dap")
 			local map = vim.keymap.set
-			map("n", "<leader>db", dap.toggle_breakpoint)
+			map("n", "<leader>db", dap.toggle_breakpoint, { desc = "[DBG] toggle breakpoint" })
 			map("n", "<leader>dB", function()
 				dap.toggle_breakpoint(vim.fn.input("Breakpoint Condition"))
-			end)
+			end, { desc = "[DBG] toggle breakpoint Condition" })
 
 			--    Default things that I can set for debug
 			--    vim.keymap.set('n', '<F5>', function() require('dap').continue() end)

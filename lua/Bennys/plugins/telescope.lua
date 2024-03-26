@@ -55,7 +55,6 @@ return {
 		init = function()
 			map("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" })
 
-			map("n", "<leader>rl", "<cmd>Telescope repo list<cr>", { desc = "open repositories" })
 			map("n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" })
 			-- code
 		end,
@@ -71,7 +70,7 @@ return {
 			tele.load_extension("noice")
 			tele.load_extension("harpoon")
 			tele.load_extension("zoxide")
-			tele.load_extension("repo")
+			-- tele.load_extension("repo")
 			-- Playtest for now
 			-- Change direct when opening a new project
 			local g = vim.g

@@ -39,11 +39,10 @@ local newOpt = {
   },
 }
 local util = require("util")
-vim.g.mapleader = " "
 vim.g.syncing = util.syncDefault()
+require("Bennys.settings")
 local lazy = require("lazy")
 lazy.setup("Bennys.plugins", newOpt)
-require("Bennys.settings")
 
 -- local json = require("json")
 -- local file = io.open("~/test.json", "r")

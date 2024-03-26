@@ -1,9 +1,4 @@
 ---@diagnostic disable: missing-fields
--- Some code I found online
--- Finds the nearest closer and will then escape it.
-
--- Similar to EscapePair but goes backwards
-
 return {
 
 	{
@@ -25,6 +20,10 @@ return {
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
+			-- Some code I found online
+			-- Finds the nearest closer and will then escape it.
+
+			-- Similar to EscapePair but goes backwards
 
 			function EscapePair()
 				local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
@@ -51,7 +50,9 @@ return {
 
 			-- My tabout function
 			function EscapePairBackward()
-				local closers = { "%(", "%[", "%{", "<", "'", '"', "`", "," }
+				-- local closers = { "%(", "%[", "%{", "<", "'", '"', "`", "," }
+				local closers =
+					{ "%)", "%]", "%}", "%>", "%'", '%"', "%`", "%,", "%(", "%[", "%{", "<", "'", '"', "`", "," }
 				local line = vim.api.nvim_get_current_line()
 				local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 				local after = line:sub(1, col)
@@ -145,22 +146,22 @@ return {
 					end, { "i", "s", "c" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip" },
+					{ name = "luasnip", keyword_length = 3 },
 					-- { name = "omni" },
-					{ name = "nvim_lsp" },
-				}, { { name = "buffer" } }),
+					{ name = "nvim_lsp", keyword_length = 3 },
+				}, { { name = "buffer", keyword_length = 3 } }),
 			})
 			cmp.event:on("confirm_done", autopairs.on_confirm_done())
 			cmp.setup.cmdline("?", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
-					{ name = "buffer" },
+					-- { name = "buffer" },
 				},
 			})
 			cmp.setup.cmdline("/", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
-					{ name = "buffer" },
+					-- { name = "buffer" },
 				},
 			})
 			cmp.setup.cmdline(":", {
