@@ -5,8 +5,9 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "*",
-		lazy = false,
-		-- lazy = true,
+		keys = { "<leader>f" },
+		-- lazy = false,
+		lazy = true,
 		cmd = "Telescope",
 		dependencies = {
 			{ "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make", name = "fzf" },
@@ -25,7 +26,12 @@ return {
 						["<c-j>"] = function(bufnum)
 							require("telescope.actions").move_selection_next(bufnum)
 						end,
-
+						["<Tab>"] = function(bufnum)
+							require("telescope.actions").move_selection_next(bufnum)
+						end,
+						["<S-Tab>"] = function(bufnum)
+							require("telescope.actions").move_selection_previous(bufnum)
+						end,
 						["<c-k"] = function(bufnum)
 							require("telescope.actions").move_selection_previous(bufnum)
 						end,

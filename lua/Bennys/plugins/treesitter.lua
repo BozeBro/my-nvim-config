@@ -6,7 +6,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
 		opts = {
-			indent = { enabled = false },
+			indent = { enable = true },
 			ensure_installed = {
 				"c",
 				"vim",
@@ -20,6 +20,7 @@ return {
 				"markdown",
 				"markdown_inline",
 				"regex",
+				"vimdoc",
 			},
 			sync_install = false,
 			highlight = { enable = true, additional_vim_regex_highlighting = false },
@@ -108,6 +109,9 @@ return {
 		---@diagnostic disable-next-line: unused-local
 		config = function(plugin, opts)
 			require("nvim-treesitter.configs").setup(opts)
+			vim.cmd([[set foldmethod=expr]])
+			vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
+			vim.cmd([[set nofoldenable]])
 		end,
 	},
 	{ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPost", lazy = true },

@@ -56,6 +56,13 @@ return {
 			)
 				return "[" .. args[1][1] .. user_args .. "]"
 			end
+
+			ls.add_snippets({ "markdown", "latex" }, {
+				s("<=", {
+					t("\\geqslant "),
+				}),
+			})
+
 			ls.add_snippets("sml", {
 				s("let", {
 					t({ "let", "    " }),

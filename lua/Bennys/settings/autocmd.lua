@@ -28,6 +28,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*",
+	callback = function(event)
+		if vim.bo[event.buf].filetype == "help" then
+			vim.cmd.only()
+		end
+	end,
+})
 -- api.nvim_create_autocmd("FileType", { pattern = "netrw", command = "Telescope file_browser" })
 -- api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.format()" })
 -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]

@@ -1,7 +1,8 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
-		enabled = true,
+		enabled = false,
+		lazy = true,
 		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},

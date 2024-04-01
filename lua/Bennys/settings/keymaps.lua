@@ -13,6 +13,63 @@
 --         return "<c-b>"
 --     end
 -- end, { silent = true, expr = true })
+local all_modes = { "n", "i", "v" }
+local m = {
+	"å",
+	"∫",
+	"ç",
+	"∂",
+	"´",
+	"ƒ",
+	"©",
+	"˙",
+	"ˆ",
+	"∆",
+	"˚",
+	"¬",
+	"µ",
+	"˜",
+	"ø",
+	"π",
+	"œ",
+	"®",
+	"ß",
+	"†",
+	"¨",
+	"√",
+	"∑",
+	"≈",
+	"¥",
+	"Ω",
+}
+local M = {
+	"Å",
+	"ı",
+	"Ç",
+	"Î",
+	"´",
+	"Ï",
+	"˝",
+	"Ó",
+	"ˆ",
+	"Ô",
+	"",
+	"Ò",
+	"Â",
+	"˜",
+	"Ø",
+	"∏",
+	"Œ",
+	"‰",
+	"Í",
+	"ˇ",
+	"¨",
+	"◊",
+	"„",
+	"˛",
+	"Á",
+	"¸",
+}
 
 return {
 	-- {
@@ -23,6 +80,17 @@ return {
 	-- end,
 	-- {}},
 	-- },
+	-- {
+	-- 	all_modes,
+	-- 	"å",
+	-- 	"<M-a>",
+	-- },
+	-- {
+	-- 	all_modes,
+	-- 	"œ",
+	-- 	"<M-a>",
+	-- },
+	-- {},
 	{
 		"n",
 		"<leader>o",
@@ -54,32 +122,45 @@ return {
 	{
 		"n",
 		"k",
-		"v:count == 0 ? 'gk' : 'k'",
-		{ expr = true, silent = true, desc = "remap for dealing with word wrap" },
-	},
-	{
-		"i",
-		"<C-l>",
-		"<Tab>",
-		{ silent = true, noremap = true },
+		-- "v:count ? 'k' : 'gk'",
+		function()
+			if vim.v.count and vim.v.count > 0 then
+				return "m'" .. vim.v.count .. "gk"
+			else
+				return "gk"
+			end
+		end,
+		{ expr = true, silent = true, desc = "remap for dealing with word wrap", noremap = true },
 	},
 	{
 		"n",
-		"<C-l>",
-		"i<Tab><Esc>",
-		{},
+		"j",
+		function()
+			if vim.v.count and vim.v.count > 0 then
+				return "m'" .. vim.v.count .. "gj"
+			else
+				return "gj"
+			end
+		end,
+		{ expr = true, silent = true, noremap = true },
 	},
+	-- {
+	-- 	"i",
+	-- 	"<C-l>",
+	-- 	"<Tab>",
+	-- 	{ silent = true, noremap = true },
+	-- },
+	-- {
+	-- 	"n",
+	-- 	"<C-l>",
+	-- 	"i<Tab><Esc>",
+	-- 	{},
+	-- },
 	{
 		"i",
 		"<C-S-l>",
 		"<S-Tab>",
 		{ silent = true, noremap = true },
-	},
-	{
-		"n",
-		"j",
-		"v:count == 0 ? 'gj' : 'j'",
-		{ expr = true, silent = true },
 	},
 	{ { "n", "v" }, "<leader>q", "<cmd>q<cr>", { desc = "Quit Vim" } },
 	{ { "n", "v" }, "<leader>w", "<cmd>w<cr>", { desc = "Save Vim" } },
@@ -171,12 +252,12 @@ return {
 		{ desc = "Toggle Vertical Terminal" },
 	},
 
-	{
-		{ "i" },
-		"<c-\\>",
-		"<ESC><CMD>" .. vim.v.count1 .. "ToggleTerm<cr>",
-		{ silent = true, desc = "Toggle nth Terminal" },
-	},
+	-- {
+	-- 	{ "i" },
+	-- 	"<c-\\>",
+	-- 	"<ESC><CMD>" .. vim.v.count1 .. "ToggleTerm<cr>",
+	-- 	{ silent = true, desc = "Toggle nth Terminal" },
+	-- },
 	-- {
 	--     "i",
 	--     "<Tab>",
@@ -204,7 +285,7 @@ return {
 	-- map({ "i", "t" }, "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true }),
 	{
 		{ "i", "n", "v" },
-		"<c-[>",
+		";;",
 		"<Esc>",
 		{
 			desc = "Escape vim",

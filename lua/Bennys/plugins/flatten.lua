@@ -2,7 +2,8 @@ return {
 	{
 		"willothy/flatten.nvim",
 		dependencies = { "akinsho/toggleterm.nvim" },
-		lazy = false,
+		lazy = true,
+		enable = false,
 		opts = {
 			-- From flatten advanced config. Don't open file in terminal buffer, but do not close the terminal buffer
 			callbacks = {

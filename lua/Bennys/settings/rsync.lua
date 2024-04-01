@@ -22,7 +22,6 @@ local M = {}
 function M.load_launchjs()
 	local path = vim.fn.getcwd() .. "/" .. util.fileLoc
 	local file = io.open(path, "r")
-	print(path)
 	if not file then
 		return {}
 	end
@@ -109,6 +108,7 @@ vim.api.nvim_create_user_command("RsyncUp", M.syncUp, {})
 vim.api.nvim_create_user_command("RsyncBlank", function()
 	M.write_blank(util.fileLoc)
 end, {})
+vim.api.nvim_create_user_command("RsyncDown", M.syncDown, {})
 vim.api.nvim_create_user_command("RsyncDown", M.syncDown, {})
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = M.syncUp,

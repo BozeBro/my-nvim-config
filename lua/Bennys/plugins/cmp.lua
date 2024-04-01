@@ -14,6 +14,7 @@ return {
 			"onsails/lspkind.nvim",
 			"https://github.com/hrsh7th/cmp-omni",
 		},
+
 		event = "InsertEnter",
 		config = function()
 			local autopairs = require("nvim-autopairs.completion.cmp")
