@@ -1,7 +1,7 @@
 return {
 	{
 		"BozeBro/neo-tree.nvim",
-		enabled = true,
+		enabledd = true,
 		lazy = true,
 		-- branch = "v3.x",
 		dependencies = {
@@ -47,7 +47,8 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-bqf",
-		config = true,
+		enabled = true,
+		-- config = true,
 
 		-- config = true,
 	},

@@ -37,7 +37,9 @@ return {
 					{
 						"n",
 						"gD",
-						buf.declaration,
+
+
+            buf.declaration,
 						combine(bufopts, { desc = "[LSP] Go to declaration" }),
 					},
 					{

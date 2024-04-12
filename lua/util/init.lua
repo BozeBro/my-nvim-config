@@ -33,4 +33,11 @@ M.getHighlightRange = function()
 		finish = { line = end_line, col = end_col },
 	}
 end
+M.createPrefixUserCMD = function(name, cmd, opts)
+	for i = 1, #name do
+		local sub = name:sub(1, i)
+		vim.api.nvim_create_user_command(sub, cmd, opts)
+	end
+end
+
 return M

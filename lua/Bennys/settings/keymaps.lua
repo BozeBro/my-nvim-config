@@ -1,18 +1,3 @@
--- Keymaps for better default experience
--- See `:help vim.keymap.set`
-
--- map({ "n", "i" }, "<c-\\>", )
--- vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
---     if not require("noice.lsp").scroll(4) then
---         return "<c-f>"
---     end
--- end, { silent = true, expr = true })
---
--- vim.keymap.set({ "n", "i", "s" }, "<c-b>", function()
---     if not require("noice.lsp").scroll( -4) then
---         return "<c-b>"
---     end
--- end, { silent = true, expr = true })
 local all_modes = { "n", "i", "v" }
 local m = {
 	"å",
@@ -282,23 +267,15 @@ return {
 		"<cmd>bd<cr>",
 		{ desc = "Close current buffer" },
 	},
-	-- map({ "i", "t" }, "<C-[>", "<Esc>", { desc = "Escape vim", silent = true, noremap = true }),
 	{
 		{ "i", "n", "v" },
-		";;",
+		";",
 		"<Esc>",
 		{
 			desc = "Escape vim",
 			silent = true, --[[ , noremap = true ]]
 		},
 	},
-	-- {
-	-- 	"n",
-	-- 	"<c-[>",
-	-- 	"<ESC>",
-	-- 	{ desc = "Enter Insert Mode", noremap = true },
-	-- },
-	-- map("n", "<C-[>", "i", { desc = "Enter Insert Mode" })
 	{
 		"n",
 		"<leader>1",

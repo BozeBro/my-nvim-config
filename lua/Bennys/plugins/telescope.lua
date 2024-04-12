@@ -79,11 +79,11 @@ return {
 			-- tele.load_extension("repo")
 			-- Playtest for now
 			-- Change direct when opening a new project
-			local g = vim.g
-			g["rooter_cd_cmd"] = "lcd"
+			-- local g = vim.g
+			-- g["rooter_cd_cmd"] = "lcd"
 		end,
 	},
-	{ "cljoly/telescope-repo.nvim", lazy = true, dependencies = { "vim-rooter" } },
+	-- { "cljoly/telescope-repo.nvim", lazy = true, dependencies = { "vim-rooter" } },
 	{ "jvgrootveld/telescope-zoxide", lazy = true },
-	{ "airblade/vim-rooter", lazy = true },
+	-- { "airblade/vim-rooter", lazy = true },
 }
