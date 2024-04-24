@@ -6,7 +6,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
 		opts = {
-			indent = { enable = true },
+			indent = { enable = false },
 			ensure_installed = {
 				"c",
 				"vim",

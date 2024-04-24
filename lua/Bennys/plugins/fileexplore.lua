@@ -1,7 +1,7 @@
 return {
 	{
 		"stevearc/oil.nvim",
-		enabled = false,
+		enabled = true,
 		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },

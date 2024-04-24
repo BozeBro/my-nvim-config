@@ -3,6 +3,7 @@ return {
 	{
 		"rcarriga/nvim-dap-ui",
 		lazy = true,
+		enabled = false,
 		keys = { "<leader>dt" },
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = function(_, opts)
@@ -13,6 +14,7 @@ return {
 	},
 	{
 		"theHamsta/nvim-dap-virtual-text",
+		enabled = false,
 		lazy = true,
 		keys = { "<leader>d" },
 		dependencies = { "mfussenegger/nvim-dap" },
@@ -25,6 +27,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		keys = { "<leader>d" },
+		enabled = false,
 		lazy = true,
 		config = function()
 			local dap = require("dap")
@@ -58,6 +61,7 @@ return {
 			end, { desc = "[DBG] Scopes" })
 
 			map("n", "<leader>dc", dap.continue, { desc = "[DBG] continue" })
+			-- map("n", "<leader>dn", dap.step_over, { desc = "[DBG] next" })
 			map("n", "<leader>dso", dap.step_over, { desc = "[DBG] step over" })
 			map("n", "<leader>dsi", dap.step_into, { desc = "[DBG] step into" })
 			map("n", "<leader>dr", dap.repl.open, { desc = "[DBG] open repl" })

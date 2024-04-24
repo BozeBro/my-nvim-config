@@ -1,8 +1,8 @@
 return {
 	{
 		"BozeBro/neo-tree.nvim",
-		enabledd = true,
-		lazy = true,
+		-- enabledd = true,
+		-- lazy = true,
 		-- branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",

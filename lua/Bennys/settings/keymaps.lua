@@ -268,15 +268,6 @@ return {
 		{ desc = "Close current buffer" },
 	},
 	{
-		{ "i", "n", "v" },
-		";",
-		"<Esc>",
-		{
-			desc = "Escape vim",
-			silent = true, --[[ , noremap = true ]]
-		},
-	},
-	{
 		"n",
 		"<leader>1",
 		"<cmd>lua require('bufferline').go_to_buffer(1, true)<cr>",

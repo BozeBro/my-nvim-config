@@ -3,11 +3,18 @@ local api = vim.api
 local map = vim.keymap.set
 return {
 	{
+		{
+			"folke/neodev.nvim",
+			config = true,
+			lazy = true,
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		dependencies = { "folke/neodev.nvim", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 		config = function()
-			require("neodev").setup()
+			require("neodev")
 			local lspconfig = require("lspconfig")
 			local servers = { "lua_ls", "clangd", "gopls" }
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -38,8 +45,7 @@ return {
 						"n",
 						"gD",
 
-
-            buf.declaration,
+						buf.declaration,
 						combine(bufopts, { desc = "[LSP] Go to declaration" }),
 					},
 					{
