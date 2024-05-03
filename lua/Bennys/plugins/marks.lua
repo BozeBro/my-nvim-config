@@ -1,6 +1,7 @@
 return {
 	{
 		"ThePrimeagen/harpoon",
+		keys = { "<leader>np", "<leader>nn", "<leader>jj", "<leader>tq", "<leader>m" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local harpoon = require("harpoon")

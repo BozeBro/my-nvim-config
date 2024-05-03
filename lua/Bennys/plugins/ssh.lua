@@ -1,8 +1,8 @@
 return {
 	{
-		"BozeBro/neo-tree.nvim",
-		-- enabledd = true,
-		-- lazy = true,
+		"nvim-neo-tree/neo-tree.nvim",
+		lazy = true,
+		keys = { { "<leader>nt", "<cmd>Neotree toggle<cr>", mode = "n" } },
 		-- branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -39,10 +39,6 @@ return {
 			-- 		end
 			-- 	end,
 			-- })
-
-			vim.api.nvim_create_user_command("NT", function()
-				vim.cmd("Neotree toggle")
-			end, {})
 		end,
 	},
 	{

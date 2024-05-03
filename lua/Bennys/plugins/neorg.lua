@@ -2,6 +2,7 @@ return {
 	{
 		"vhyrro/luarocks.nvim",
 		-- enableddd = false,
+		enabled = false,
 		lazy = true,
 		-- priority = 1000, -- We'd like this plugin to load first out of the rest
 		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
@@ -9,6 +10,7 @@ return {
 	{
 
 		"nvim-neorg/neorg",
+		enabled = false,
 		-- enableddd = false,
 		-- lazy = false,
 		dependencies = { "vhyrro/luarocks.nvim" },

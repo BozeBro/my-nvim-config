@@ -12,7 +12,11 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
-		dependencies = { "folke/neodev.nvim", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+		dependencies = {
+			"folke/neodev.nvim",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
 			require("neodev")
 			local lspconfig = require("lspconfig")

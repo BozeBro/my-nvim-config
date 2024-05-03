@@ -135,12 +135,12 @@ return {
 	-- 	"<Tab>",
 	-- 	{ silent = true, noremap = true },
 	-- },
-	-- {
-	-- 	"n",
-	-- 	"<C-l>",
-	-- 	"i<Tab><Esc>",
-	-- 	{},
-	-- },
+	{
+		"n",
+		"<C-l>",
+		"i<Tab><Esc>",
+		{},
+	},
 	{
 		"i",
 		"<C-S-l>",
@@ -386,7 +386,7 @@ return {
 	},
 	{ "n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle Float Terminal" } },
 	{
-		"i",
+		{ "i" },
 		"<c-l>",
 		"<Tab>",
 		{ desc = "Replace <c-l> with <TAB> default does nothing" },
