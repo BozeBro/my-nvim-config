@@ -12,3 +12,5 @@ g.netrw_keepdir = 0
 g["ft"] = true
 
 g.netrw_liststyle = 3
+-- https://neovim.io/doc/user/editorconfig.html
+g.editorconfig = false

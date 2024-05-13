@@ -62,6 +62,11 @@ return {
 					t("\\geqslant "),
 				}),
 			})
+			ls.add_snippets({ "lua" }, {
+				s("{", {
+					t({ "{}," }),
+				}, {}),
+			})
 
 			ls.add_snippets("sml", {
 				s("let", {

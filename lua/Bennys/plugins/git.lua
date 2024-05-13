@@ -100,6 +100,7 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
+		cmd = { "Diff", "Git" },
 		config = function()
 			vim.api.nvim_create_user_command("Diff", "Git -c pager.diff=delta diff", {})
 		end,

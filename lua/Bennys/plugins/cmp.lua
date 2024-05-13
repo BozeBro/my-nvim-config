@@ -15,7 +15,8 @@ return {
 			"https://github.com/hrsh7th/cmp-omni",
 		},
 
-		event = "InsertEnter",
+		lazy = true,
+		event = { "InsertEnter" },
 		config = function()
 			local autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp = require("cmp")

@@ -43,25 +43,54 @@ local newOpt = {
     },
 }
 local lazy = require("lazy")
---local plugins = {
---"treesitter",
----- "bufferline",
----- "colorscheme",
----- "lsp",
----- "cmp",
----- "null",
----- "noice",
----- "telescope",
----- "autopairs",
----- "luasnip",
---}
---local lua_plugins = {}
---for index, value in ipairs(plugins) do
---	table.insert(lua_plugins, require("Bennys.plugins." .. value))
---end
---
---lazy.setup(lua_plugins)
-lazy.setup("Bennys.plugins", newOpt)
+local plugins = {
+    "autopairs",
+    "bufferline",
+    "cmp",
+    "colorscheme",
+    "comments",
+    "dap",
+    --
+    "fast",
+    "fileexplore",
+    "flatten",
+    "git",
+    --
+    "hop",
+    "image",
+    "img-clip",
+    "init",
+    "lsp",
+    "lualine",
+    "luasnip",
+    "marks",
+    "mini",
+    "multiline",
+    "neogit",
+    "neorg",
+    "noice",
+    "null",
+    "obsidian",
+    "register",
+    "session",
+    "ssh",
+    "telescope",
+    "todo",
+    "toggleterm",
+    "treesitter",
+    "undo",
+    "which",
+}
+local lset = function()
+    local lua_plugins = {}
+    for _, value in ipairs(plugins) do
+        table.insert(lua_plugins, require("Bennys.plugins." .. value))
+    end
+
+    lazy.setup(lua_plugins, newOpt)
+end
+lset()
+-- lazy.setup("Bennys.plugins", newOpt)
 
 vim.api.nvim_create_autocmd({ "DirChanged" }, {
     pattern = "*",
