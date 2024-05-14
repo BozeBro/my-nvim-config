@@ -23,7 +23,7 @@ o.updatetime = 250
 o.signcolumn = "yes"
 
 -- Set colorscheme
-o.termguicolors = false
+o.termguicolors = true
 -- Options for which-key defaults
 vim.o.timeout = true
 vim.o.timeoutlen = 300

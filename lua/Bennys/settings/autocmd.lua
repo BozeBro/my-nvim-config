@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd({ "DirChanged" }, {
     end,
     -- group = "my_other_autocommands",
 })
+
 local regCreate = require("util").createPrefixUserCMD
 regCreate("Help", function(args)
     -- vim.opt.buflisted = true
@@ -35,3 +36,27 @@ regCreate("Help", function(args)
     vim.cmd.help(args.args)
     vim.cmd.only()
 end, { nargs = 1, complete = "help" })
+vim.api.nvim_create_autocmd({ "TabEnter", "UIEnter" }, {
+    -- pattern = "LazyVimStarted",
+    once = true,
+    callback = function()
+        -- this needs to be deffered for some other stuff to load, I am not sure there is a better event
+        vim.defer_fn(function()
+            local mark = require("harpoon.mark")
+            local harpoon_buffers = {}
+            local current_idx = 1
+
+            while mark.get_marked_file_name(current_idx) do
+                harpoon_buffers[current_idx] = mark.get_marked_file_name(current_idx)
+                current_idx = current_idx + 1
+            end
+
+            -- for each of the harpoon buffers we open them
+            for _, buffer in ipairs(harpoon_buffers) do
+                vim.cmd("badd " .. buffer)
+            end
+
+            require("harpoon.ui").nav_file(1)
+        end, 10)
+    end,
+})
