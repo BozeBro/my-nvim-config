@@ -12,7 +12,6 @@ local function get_marked_buffers()
 
     return harpoon_file_names
 end
-
 return {
     {
         "akinsho/bufferline.nvim",

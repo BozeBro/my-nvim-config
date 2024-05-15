@@ -60,3 +60,44 @@ vim.api.nvim_create_autocmd({ "TabEnter", "UIEnter" }, {
         end, 10)
     end,
 })
+
+local home = vim.fn.expand("~")
+
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--     pattern = {
+--
+--         home .. "/.config/kitty/PaperColor",
+--         home .. "/.config/kitty/current-theme.conf",
+--         home .. "/.config/kitty/kitty-themes/themes/3024_Day.conf",
+--         home .. "/.config/kitty/kitty-themes/themes/Solarized_Darcula.conf",
+--         home .. "/.config/kitty/kitty.conf",
+--         home .. "/.config/kitty/kitty.conf.bak",
+--         home .. "/.config/kitty/theme.conf",
+--         home .. "/.config/kitty/themes",
+--         home .. "/.config/kitty/tokyo.conf",
+--         home .. "/.config/neofetch/config.conf",
+--         home .. "/.config/nvim",
+--         home .. "/.config/skhd/skhdrc",
+--         home .. "/.gitmodules",
+--         home .. "/.images/background.jpg",
+--         home .. "/.images/opm.png",
+--         home .. "/.skhdrc",
+--         home .. "/.vimrc",
+--         home .. "/.yabairc",
+--         home .. "/.zprofile",
+--         home .. "/.zsh_dir/.zsh_aliases",
+--         home .. "/.zsh_history",
+--         home .. "/.zsh_sessions/2F0320E7-A99F-4149-97ED-026A843B4CC0.historynew.LOCK",
+--         home .. "/.zsh_sessions/4B98EC1F-E1DE-4743-9A4C-CD14C207C963.session",
+--         home .. "/.zsh_sessions/94A79A32-37D9-496E-9862-BA2BE4BC6DC0.session",
+--         home .. "/.zsh_sessions/_expiration_check_timestamp",
+--         home .. "/.zshenv",
+--         home .. "/.zshrc",
+--         home .. "/Brewfile",
+--     },
+--     callback = function()
+--         local path = vim.fn.expand("%")
+--         os.execute("yadm add -q " .. path)
+--         os.execute("yadm commit -q -m 'nvim commit' " .. path)
+--     end,
+-- })
