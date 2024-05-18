@@ -1,21 +1,35 @@
 local map = vim.keymap.set
 
 return {
-    { "nvim-lua/plenary.nvim", lazy = true },
+    { "nvim-lua/plenary.nvim",        lazy = true },
     {
         "nvim-telescope/telescope.nvim",
         version = "*",
-        keys = { "<leader>f" },
+        keys = { "<leader>f", "q:" },
         -- lazy = false,
         lazy = true,
         cmd = "Telescope",
         dependencies = {
-            { "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make", name = "fzf" },
-            { "nvim-telescope/telescope-file-browser.nvim", name = "file_browser" },
+            { "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make",       name = "fzf" },
+            { "nvim-telescope/telescope-file-browser.nvim",                      name = "file_browser" },
             { "nvim-lua/plenary.nvim" },
             -- { "folke/noice.nvim" },
         },
         opts = {
+            pickers = {
+                command_history = {
+                    mappings = {
+                        i = {
+                            ["<S-CR>"] = function(bufnum)
+                                local entry = require("telescope.actions.state").get_current_line()
+                                require("telescope.actions").close(bufnum)
+                                vim.fn.histadd("cmd", entry)
+                                vim.cmd(entry)
+                            end,
+                        },
+                    },
+                },
+            },
             defaults = {
                 sorting_strategy = "ascending",
                 layout_config = {
@@ -38,6 +52,8 @@ return {
                         ["<c-;>"] = function(bufnum)
                             require("trouble.providers.telescope").open_with_trouble(bufnum)
                         end,
+
+                        -- ["<S-CR>"] = ,
                     },
                     n = {
                         ["<c-[>"] = function(bufnum)
@@ -58,12 +74,6 @@ return {
                 path = "%:p:h",
             },
         },
-        init = function()
-            map("n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" })
-
-            map("n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" })
-            -- code
-        end,
         config = function(_, opts)
             local tele = require("telescope")
 
@@ -76,6 +86,10 @@ return {
             tele.load_extension("noice")
             tele.load_extension("harpoon")
             tele.load_extension("zoxide")
+            -- vim.keymap.set("n", "q:", function()
+            --     vim.notify("yay")
+            --     require("telescope.builtin").command_history()
+            -- end, { desc = "[T]elescope [C]ommand history", noremap = true, expr = true })
             -- tele.load_extension("repo")
             -- Playtest for now
             -- Change direct when opening a new project

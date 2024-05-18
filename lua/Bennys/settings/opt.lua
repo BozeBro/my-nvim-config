@@ -13,15 +13,15 @@ o.breakindent = true
 
 -- Save undo history
 o.undofile = true
-
+--
 -- Case insensitive searching UNLESS /C or capital in search
 o.ignorecase = true
 o.smartcase = true
-
+--
 -- Decrease update time
 o.updatetime = 250
 o.signcolumn = "yes"
-
+--
 -- Set colorscheme
 o.termguicolors = true
 -- Options for which-key defaults
