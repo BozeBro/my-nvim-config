@@ -3,7 +3,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
         version = "*",
-        event = { "BufReadPost", "BufNewFile" },
+
         build = ":TSUpdate",
         opts = {
             indent = { enable = false },
@@ -59,11 +59,11 @@ return {
                     set_jumps = true, -- whether to set jumps in the jumplist
                     goto_next_start = {
                         ["]m"] = "@function.outer",
-                        ["]]"] = "@class.outer",
+                        ["]["] = "@class.outer",
                     },
                     goto_next_end = {
                         ["]M"] = "@function.outer",
-                        ["]["] = "@class.outer",
+                        ["]]"] = "@class.outer",
                     },
                     goto_previous_start = {
                         ["[m"] = "@function.outer",
@@ -87,7 +87,7 @@ return {
             playground = {
                 enable = true,
                 disable = {},
-                updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+                updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
                 persist_queries = false, -- Whether the query persists across vim sessions
                 keybindings = {
                     toggle_query_editor = "o",

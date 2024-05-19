@@ -56,9 +56,9 @@ local M = {
     "¸",
 }
 
-return {
+local keys = {
     { "n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" } },
-    { "n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" } },
+    { "n", "<leader>n",  "<cmd>Telescope noice<cr>",       { desc = "Open messages" } },
     -- {
     -- {"n", "v"},
     -- "ddd",
@@ -105,7 +105,7 @@ return {
         { desc = "Force expand or jump for Enter" },
     },
     { { "n", "v" }, "<Space>", "<Nop>", { silent = true, desc = "Make <Leader> behave as expected" } },
-    { "n", "<S-Tab>", "<Nop>", { silent = true } },
+    { "n",          "<S-Tab>", "<Nop>", { silent = true } },
     {
         "n",
         "k",
@@ -152,13 +152,13 @@ return {
     { { "n", "v" }, "<leader>q", "<cmd>q<cr>", { desc = "Quit Vim" } },
     { { "n", "v" }, "<leader>w", "<cmd>w<cr>", { desc = "Save Vim" } },
     {
-        { "n", "v" },
+        { "n",                     "v" },
         "<leader>zq",
         "<cmd>q!<cr>",
         { desc = "Quit w/e saving" },
     },
     {
-        { "n", "v" },
+        { "n",              "v" },
         "<leader>zz",
         "<cmd>qall<cr>",
         { desc = "Quit all" },
@@ -185,13 +185,13 @@ return {
         {},
     },
     {
-        { "n", "v" },
+        { "n",                          "v" },
         "<C-c>",
         "<cmd>vertical resize +5<cr>",
         { desc = "Increase screen size" },
     },
     {
-        { "n", "v" },
+        { "n",                          "v" },
         "<C-x>",
         "<cmd>vertical resize -5<cr>",
         { desc = "Decrease screen size" },
@@ -329,9 +329,9 @@ return {
         "<cmd>tabe<cr>",
         { desc = "Open new tab" },
     },
-    { "n", "<leader>tc", "<cmd>tabc<cr>", { desc = "Close tab" } },
+    -- { "n", "<leader>tc", "<cmd>tabc<cr>", { desc = "Close tab" } },
     -- { "n", "<leader>ff", "<cmd>Telescope find_files find_command=fd<cr>", { desc = "Find Files" } },
-    { "n", "<leader>fn", "<cmd>Telescope noice<cr>", { desc = "Open messages" } },
+    { "n", "<leader>fn", "<cmd>Telescope noice<cr>",     { desc = "Open messages" } },
     -- { "n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "File grep" } },
     -- {
     -- 	"n",
@@ -367,7 +367,7 @@ return {
         { desc = "Open Telescope" },
     },
 
-    { "n", "<leader>gf", "<cmd>Telescope git_files<cr>", { desc = "Git Files" } },
+    { "n", "<leader>gf", "<cmd>Telescope git_files<cr>",        { desc = "Git Files" } },
     {
         "n",
         "<leader>bf",
@@ -403,4 +403,12 @@ return {
         "<D-s>",
         "<c-o><cmd>w<cr>",
     },
+    {
+        "n",
+        "q:",
+        "<Nop>",
+        { remap = false, silent = true },
+    },
 }
+require("util").mapKeys(keys)
+return keys

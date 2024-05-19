@@ -3,7 +3,7 @@ local wo = vim.wo
 
 wo.number = true
 wo.relativenumber = true
-
+--
 -- Set highlight on search
 o.hlsearch = false
 -- Enable mouse mode
@@ -26,9 +26,10 @@ o.signcolumn = "yes"
 o.termguicolors = true
 -- Options for which-key defaults
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 1000
+vim.o.ttimeoutlen = vim.o.timeoutlen
 o.hidden = true
--- vim.o.omnifunc = vim.lsp.omnifunc
--- vim.cmd([[set rtp+=<SHARE_DIR>/merlin/vim]])
--- local newpath = "/Users/benedictozua/.opam/program-repair/share/ocp-indent/vim," .. o.rtp
--- o.rtp = newpath
+-- -- vim.o.omnifunc = vim.lsp.omnifunc
+-- -- vim.cmd([[set rtp+=<SHARE_DIR>/merlin/vim]])
+-- -- local newpath = "/Users/benedictozua/.opam/program-repair/share/ocp-indent/vim," .. o.rtp
+-- -- o.rtp = newpath

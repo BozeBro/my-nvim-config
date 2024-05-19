@@ -36,12 +36,3 @@ regCreate("Help", function(args)
     vim.cmd.help(args.args)
     vim.cmd.only()
 end, { nargs = 1, complete = "help" })
-
--- vim.api.nvim_create_autocmd("CmdwinEnter", {
---     pattern = "*",
---     callback = function()
---         vim.keymap.set({ "n" }, "<leader><leader>", function()
---             vim.notify("Hello World")
---         end, { buffer = true })
---     end,
--- })

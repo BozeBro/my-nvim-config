@@ -3,6 +3,19 @@ local api = vim.api
 local map = vim.keymap.set
 return {
     {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        event = "BufReadPost",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        opts = {
+            -- configurations go here
+        },
+    },
+    {
         {
             "folke/neodev.nvim",
             config = true,
@@ -11,7 +24,8 @@ return {
     },
     {
         "nvimdev/lspsaga.nvim",
-        event = "BufReadPre",
+        enabled = false,
+        event = "BufReadPost",
         dependencies = {
             "nvim-treesitter/nvim-treesitter", -- optional
             "nvim-tree/nvim-web-devicons", -- optional

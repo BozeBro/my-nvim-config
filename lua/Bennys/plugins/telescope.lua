@@ -5,7 +5,17 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         version = "*",
-        keys = { "<leader>f", "q:" },
+        keys = {
+            "<leader>f",
+            "q:",
+            {
+                "<leader>tc",
+                function()
+                    require("telescope.builtin").command_history()
+                end,
+                { desc = "[T]elescope [C]ommand history", noremap = true, expr = true },
+            },
+        },
         -- lazy = false,
         lazy = true,
         cmd = "Telescope",
@@ -86,7 +96,7 @@ return {
             tele.load_extension("noice")
             tele.load_extension("harpoon")
             tele.load_extension("zoxide")
-            -- vim.keymap.set("n", "q:", function()
+            -- vim.keymap.set("n", "<leader>tc", function()
             --     vim.notify("yay")
             --     require("telescope.builtin").command_history()
             -- end, { desc = "[T]elescope [C]ommand history", noremap = true, expr = true })
