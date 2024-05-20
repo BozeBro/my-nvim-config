@@ -1,5 +1,5 @@
 local g = vim.g
-g.python3_host_prog = "/Users/benedictozua/.pyenv/shims/python3"
+g.python3_host_prog = "~/.pyenv/shims/python3"
 -- Set completeopt to have a better completion experience
 g.completeopt = "menu,menuone,noinsert,noselect"
 -- [[ Basic Keymaps ]]

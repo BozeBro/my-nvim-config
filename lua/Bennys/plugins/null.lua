@@ -11,6 +11,7 @@ return {
                 null_ls.builtins.formatting.smlfmt,
                 -- null_ls.builtins.diagnostics.cpplint,
                 null_ls.builtins.formatting.clang_format,
+                null_ls.builtins.diagnostics.mypy,
             }
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             null_ls.setup {
