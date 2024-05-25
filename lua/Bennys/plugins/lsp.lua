@@ -28,7 +28,7 @@ return {
         event = "BufReadPost",
         dependencies = {
             "nvim-treesitter/nvim-treesitter", -- optional
-            "nvim-tree/nvim-web-devicons",     -- optional
+            "nvim-tree/nvim-web-devicons", -- optional
         },
         opts = {
             lightbulb = {
@@ -86,10 +86,10 @@ return {
                         buf.definition,
                         combine(bufopts, { desc = "[LSP] Go to Definition" }),
                     },
-                    { "n", "K",          buf.hover,                   dscr("[LSP] Hover definition") },
-                    { "i", "<c-k>",      buf.hover,                   dscr("[LSP] Hover definition") },
-                    { "n", "<C-k>",      buf.signature_help,          dscr("[LSP] Signature Help") },
-                    { "n", "<leader>za", buf.add_workspace_folder,    dscr("[LSP] Add Workspace Folder") },
+                    { "n", "K", buf.hover, dscr("[LSP] Hover definition") },
+                    { "i", "<c-k>", buf.hover, dscr("[LSP] Hover definition") },
+                    { "n", "<C-k>", buf.signature_help, dscr("[LSP] Signature Help") },
+                    { "n", "<leader>za", buf.add_workspace_folder, dscr("[LSP] Add Workspace Folder") },
                     { "n", "<leader>zr", buf.remove_workspace_folder, dscr("[LSP] Remove Workspace Folder") },
                     {
                         "n",
@@ -107,10 +107,10 @@ return {
                         end,
                         dscr("Format file"),
                     },
-                    { "n", "<leader>D",  buf.type_definition, dscr("[LSP] Type Definition") },
-                    { "n", "<leader>rn", buf.rename,          dscr("[LSP] rename") },
-                    { "n", "<leader>ca", buf.code_action,     dscr("[LSP] code Action") },
-                    { "n", "gr",         buf.references,      dscr("[LSP] references") },
+                    { "n", "<leader>D", buf.type_definition, dscr("[LSP] Type Definition") },
+                    { "n", "<leader>rn", buf.rename, dscr("[LSP] rename") },
+                    { "n", "<leader>ca", buf.code_action, dscr("[LSP] code Action") },
+                    { "n", "gr", buf.references, dscr("[LSP] references") },
                     {
                         "n",
                         "gl",
@@ -170,7 +170,7 @@ return {
                             pycodestyle = { enabled = false },
                             pyls_isort = { enabled = true },
                             rope_autoimport = { enabled = true },
-                            -- rope_completion = { enabled = true },
+                            rope_completion = { enabled = true },
                         },
                     },
                 },

@@ -140,7 +140,7 @@ return {
                     cb {
                         type = "executable",
                         -- command = "path/to/virtualenvs/debugpy/bin/python",
-                        -- command = "/Users/benedictozua/projects/piano/env/bin/python3.10",
+                        -- command = "home/projects/piano/env/bin/python3.10",
                         command = vim.fn.getcwd() .. "/env/debugpy/bin/python",
                         args = { "-m", "debugpy.adapter" },
                         options = {
@@ -157,7 +157,7 @@ return {
                     name = "Launch file",
                     program = "${file}",
                     -- pythonPath = function()
-                    -- 	return "/Users/benedictozua/.pyenv/shims/python"
+                    -- 	return "home/.pyenv/shims/python"
                     -- end,
                 },
             }
