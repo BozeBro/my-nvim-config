@@ -14,3 +14,5 @@ When in a table (lua, python dictionary, json etc.), have a comma be placed afte
 
 fd - For Faster finder for Telescope, and for Telescope-file-browser to work
 rg - Telescope live_grep and faster grep
+
+export PROMPT='%{$fg_bold[magenta]%}Bennys%{$reset_color%} %{$fg[cyan]%}%~/%{$reset_color%} ${vcs_info_msg_0_}${NEWLINE}${ARROW} '
