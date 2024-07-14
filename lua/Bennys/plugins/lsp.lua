@@ -207,6 +207,11 @@ return {
                 filetypes = { "sml", "cm", "sig", "mlb" },
                 cmd = { home .. "/millet/target/release/millet-ls" },
             }
+            lspconfig.hls.setup {
+                on_attach = on_attach,
+                flags = lsp_flags,
+                capabilities = capabilities,
+            }
             -- local select_opts = {behavior = cmp.SelectBehavior.Select} ??
             local mslsp = require("mason-lspconfig")
             local ensure_installed = servers

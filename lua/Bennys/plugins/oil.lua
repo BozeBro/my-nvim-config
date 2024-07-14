@@ -4,6 +4,7 @@ return {
         enabled = true,
         lazy = true,
         cmd = "Oil",
+        keys = { "-" },
         opts = {},
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },

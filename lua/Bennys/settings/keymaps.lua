@@ -58,7 +58,7 @@ local M = {
 
 local keys = {
     { "n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" } },
-    { "n", "<leader>n",  "<cmd>Telescope noice<cr>",       { desc = "Open messages" } },
+    { "n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" } },
     -- {
     -- {"n", "v"},
     -- "ddd",
@@ -105,7 +105,7 @@ local keys = {
         { desc = "Force expand or jump for Enter" },
     },
     { { "n", "v" }, "<Space>", "<Nop>", { silent = true, desc = "Make <Leader> behave as expected" } },
-    { "n",          "<S-Tab>", "<Nop>", { silent = true } },
+    { "n", "<S-Tab>", "<Nop>", { silent = true } },
     {
         "n",
         "k",
@@ -152,13 +152,13 @@ local keys = {
     { { "n", "v" }, "<leader>q", "<cmd>q<cr>", { desc = "Quit Vim" } },
     { { "n", "v" }, "<leader>w", "<cmd>w<cr>", { desc = "Save Vim" } },
     {
-        { "n",                     "v" },
+        { "n", "v" },
         "<leader>zq",
         "<cmd>q!<cr>",
         { desc = "Quit w/e saving" },
     },
     {
-        { "n",              "v" },
+        { "n", "v" },
         "<leader>zz",
         "<cmd>qall<cr>",
         { desc = "Quit all" },
@@ -185,13 +185,13 @@ local keys = {
         {},
     },
     {
-        { "n",                          "v" },
+        { "n", "v" },
         "<C-c>",
         "<cmd>vertical resize +5<cr>",
         { desc = "Increase screen size" },
     },
     {
-        { "n",                          "v" },
+        { "n", "v" },
         "<C-x>",
         "<cmd>vertical resize -5<cr>",
         { desc = "Decrease screen size" },
@@ -237,6 +237,11 @@ local keys = {
         "<leader>tv",
         "<cmd>ToggleTerm direction=vertical<cr>",
         { desc = "Toggle Vertical Terminal" },
+    },
+    {
+        { "i", "v" },
+        "jk",
+        "<ESC>",
     },
 
     -- {
@@ -331,7 +336,7 @@ local keys = {
     },
     -- { "n", "<leader>tc", "<cmd>tabc<cr>", { desc = "Close tab" } },
     -- { "n", "<leader>ff", "<cmd>Telescope find_files find_command=fd<cr>", { desc = "Find Files" } },
-    { "n", "<leader>fn", "<cmd>Telescope noice<cr>",     { desc = "Open messages" } },
+    { "n", "<leader>fn", "<cmd>Telescope noice<cr>", { desc = "Open messages" } },
     -- { "n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "File grep" } },
     -- {
     -- 	"n",
@@ -367,7 +372,7 @@ local keys = {
         { desc = "Open Telescope" },
     },
 
-    { "n", "<leader>gf", "<cmd>Telescope git_files<cr>",        { desc = "Git Files" } },
+    { "n", "<leader>gf", "<cmd>Telescope git_files<cr>", { desc = "Git Files" } },
     {
         "n",
         "<leader>bf",
