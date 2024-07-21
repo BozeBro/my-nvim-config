@@ -1,9 +1,9 @@
 return {
     {
         "folke/tokyonight.nvim",
-        enabled = false,
-        lazy = false,
-        priority = 1000,
+        enabled = true,
+        -- lazy = false,
+        -- priority = 1000,
 
         -- lazy = false,
         -- priority = 1000,
@@ -18,6 +18,7 @@ return {
     { "ellisonleao/gruvbox.nvim", lazy = true },
     {
         "https://github.com/catppuccin/nvim",
+        enabled = false,
         name = "catppuccin",
         lazy = false,
         priority = 1000,

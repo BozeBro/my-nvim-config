@@ -2,7 +2,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-        version = "*",
+        version = "94f9a46b37f2a7ac674d518f80cf5b1d9eb8445e",
 
         build = ":TSUpdate",
         opts = {
