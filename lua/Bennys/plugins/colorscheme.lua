@@ -13,6 +13,9 @@ return {
         },
         config = function(_, opts)
             require("tokyonight").load(opts)
+            local fg = "#a1afcb"
+            vim.api.nvim_set_hl(0, "LineNrAbove", { fg = fg })
+            vim.api.nvim_set_hl(0, "LineNrBelow", { fg = fg })
         end,
     },
     { "ellisonleao/gruvbox.nvim", lazy = true },
