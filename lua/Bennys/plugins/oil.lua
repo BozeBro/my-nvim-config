@@ -2,10 +2,12 @@ return {
     {
         "stevearc/oil.nvim",
         enabled = true,
-        lazy = true,
+        lazy = false,
         cmd = "Oil",
         keys = { "-" },
-        opts = {},
+        opts = {
+            default_file_explorer = true,
+        },
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function(_, opts)
