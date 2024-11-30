@@ -3,7 +3,7 @@ return {
         "kdheepak/lazygit.nvim",
         enabled = false,
         keys = {
-            { "<leader>tl", "<cmd>LazyGit<cr>", { desc = "Open LazyGit", silent = true } },
+            { "<leader>tl", "<cmd>LazyGit<cr>",       { desc = "Open LazyGit", silent = true } },
             { "<leader>lc", "<cmd>LazyGitConfig<cr>", { desc = "Open LazyGit Config", silent = true } },
         },
     },
@@ -46,9 +46,11 @@ return {
                 map("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk [ gitSigns ]" })
                 map("v", "<leader>hs", function()
                     gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") }
+                    --
                 end, { desc = "stage hunk visual [ gitSigns ]" })
                 map("v", "<leader>hR", function()
                     gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
+                    --
                 end, { desc = "reset hunk visual gitSigns" })
                 map("n", "<leader>hS", gs.stage_buffer, { desc = "stage buffer [ gitSigns ]" })
                 map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "undo stage hunk [ gitSigns ]" })
@@ -91,6 +93,7 @@ return {
     },
     {
         "rhysd/git-messenger.vim",
+        enabled = true,
         keys = { "<leader>gmo", "<leader>gmc" },
         config = function()
             local map = vim.keymap.set
