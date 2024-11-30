@@ -57,7 +57,6 @@ function M.getText()
 end
 
 local function on_exit(job_id, exit_code, event)
-    print("Hello")
     vim.g.syncing = util.syncDefault()
     if exit_code == 0 then
         -- print("Finished Syncing")
@@ -74,8 +73,18 @@ function M.syncUp()
     end
     vim.g.syncing = "Syncing"
     ---@diagnostic disable-next-line: need-check-nil
-    local cmd = "rsync -a " .. table["path"] .. " " .. table["host"] .. ":" .. table["hostPath"]
-    vim.fn.jobstart(cmd, { on_exit = on_exit })
+    local cmd = "rsync -a " .. vim.fn.getcwd() .. " " .. table["host"] .. ":" .. table["remotePath"]
+    local err = vim.fn.jobstart(cmd, {
+        on_exit = on_exit,
+        on_stderr = function()
+            print("trying to sync command")
+            print(cmd)
+            print("An error has occured")
+        end,
+    })
+    if err <= 0 then
+        print("There was an error in syncing")
+    end
 end
 
 function M.syncDown()
@@ -85,19 +94,8 @@ function M.syncDown()
     end
     print("Start Syncing from Remote")
     vim.g.syncing = "Syncing"
-    local cmd = "rsync -a " .. table["host"] .. ":" .. table["hostPath"] .. " " .. table["path"]
+    local cmd = "rsync -a " .. table["host"] .. ":" .. table["remotePath"] .. " " .. vim.fn.getcwd()
     vim.fn.jobstart(cmd, { on_exit = on_exit })
-    -- vim.system({
-    -- 	"rsync",
-    -- 	"-a",
-    -- 	---@diagnostic disable-next-line: need-check-nil
-    -- 	table["host"]
-    -- 		.. ":"
-    -- 		---@diagnostic disable-next-line: need-check-nil
-    -- 		.. table["hostPath"],
-    -- 	---@diagnostic disable-next-line: need-check-nil
-    -- 	table["path"],
-    -- }, nil, on_exit)
 end
 
 -- host -> Remote host

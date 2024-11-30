@@ -21,6 +21,7 @@ local function diag_jump()
         end,
     }
 end
+
 return {
     {
         "phaazon/hop.nvim",
@@ -56,7 +57,7 @@ return {
     {
         "folke/flash.nvim",
         event = "VeryLazy",
-        -- enabled = false,
+        enabled = true,
         ---@type Flash.Config
         opts = {
             modes = {
@@ -67,17 +68,61 @@ return {
         },
         -- stylua: ignore
         keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
             -- { "s",     mode = { "n", "x", "o" }, diag_jump,                                           desc = "Flash" },
-            -- { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            -- { "<c-m>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
         },
         config = function(_, opts)
-            local flash = require("flash")
-            flash.setup(opts)
+            local Flash = require("flash")
+            Flash.setup(opts)
             -- More advanced example that also highlights diagnostics:
+
+            ---@param format_opts Flash.Format
+            local function format(format_opts)
+                -- always show first and second label
+                return {
+                    { format_opts.match.label1, "FlashMatch" },
+                    { format_opts.match.label2, "FlashLabel" },
+                }
+            end
+
+            vim.keymap.set("n", "<leader>hw", function()
+                Flash.jump {
+                    search = { mode = "search" },
+                    label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
+                    pattern = [[\<]],
+                    action = function(match, state)
+                        state:hide()
+                        Flash.jump {
+                            search = { max_length = 0 },
+                            highlight = { matches = false },
+                            label = { format = format },
+                            matcher = function(win)
+                                -- limit matches to the current label
+                                return vim.tbl_filter(function(m)
+                                    return m.label == match.label and m.win == win
+                                end, state.results)
+                            end,
+                            labeler = function(matches)
+                                for _, m in ipairs(matches) do
+                                    m.label = m.label2 -- use the second label
+                                end
+                            end,
+                        }
+                    end,
+                    labeler = function(matches, state)
+                        local labels = state:labels()
+                        for m, match in ipairs(matches) do
+                            match.label1 = labels[math.floor((m - 1) / #labels) + 1]
+                            match.label2 = labels[(m - 1) % #labels + 1]
+                            match.label = match.label1
+                        end
+                    end,
+                }
+            end)
         end,
     },
 }
