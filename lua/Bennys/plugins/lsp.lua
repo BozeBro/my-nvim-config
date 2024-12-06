@@ -150,12 +150,19 @@ return {
                     capabilities = capabilities,
                 }
             end
+
             lspconfig.cmake.setup {
                 on_attach = on_attach,
                 flags = lsp_flags,
                 capabilities = capabilities,
             }
 
+            lspconfig.rust_analyzer.setup {
+                on_attach = on_attach,
+                flags = lsp_flags,
+                -- TODO: Fix this https://github.com/hrsh7th/cmp-nvim-lsp/issues/72
+                capabilities = vim.lsp.protocol.make_client_capabilities(),
+            }
             lspconfig.pylsp.setup {
                 on_attach = on_attach,
                 flags = lsp_flags,
@@ -180,7 +187,17 @@ return {
                 on_attach = on_attach,
                 flags = lsp_flags,
                 capabilities = capabilities,
+                root_dir = function(filename, bufnr)
+                    return vim.fn.getcwd()
+                end,
                 settings = {
+
+                    Lua = {
+                        runtime = {
+                            version = "LuaJIT",
+                        },
+                    },
+
                     diagnostics = {
                         globals = { "vim" },
                     },

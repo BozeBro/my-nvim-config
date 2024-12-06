@@ -27,6 +27,9 @@ vim.api.nvim_create_autocmd({ "DirChanged" }, {
     pattern = "*",
     callback = function()
         vim.cmd([[ call chansend(v:stderr, printf("\033]7;file://%s\033\\", v:event.cwd)) ]])
+        -- LspRestart doesn't seem to reload the workspace
+        vim.cmd("LspStop")
+        vim.cmd("LspStart")
     end,
     -- group = "my_other_autocommands",
 })

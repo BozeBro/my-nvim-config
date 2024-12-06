@@ -57,7 +57,14 @@ local M = {
 }
 
 local keys = {
-    { "n", "<leader>cd", "<cmd>Telescope zoxide list<cr>", { desc = "Cd into directory" } },
+    {
+        "n",
+        "<leader>cd",
+        function()
+            vim.cmd("Telescope zoxide list")
+        end,
+        { desc = "Cd into directory" },
+    },
     { "n", "<leader>n", "<cmd>Telescope noice<cr>", { desc = "Open messages" } },
     -- {
     -- {"n", "v"},
@@ -104,7 +111,12 @@ local keys = {
         end,
         { desc = "Force expand or jump for Enter" },
     },
-    { { "n", "v" }, "<Space>", "<Nop>", { silent = true, desc = "Make <Leader> behave as expected" } },
+    {
+        { "n", "v" },
+        "<Space>",
+        "<Nop>",
+        { silent = true, desc = "Make <Leader> behave as expected" },
+    },
     { "n", "<S-Tab>", "<Nop>", { silent = true } },
     {
         "n",
@@ -186,15 +198,27 @@ local keys = {
     },
     {
         { "n", "v" },
-        "<C-c>",
+        "<C-A-Right>",
         "<cmd>vertical resize +5<cr>",
         { desc = "Increase screen size" },
     },
     {
         { "n", "v" },
-        "<C-x>",
+        "<C-A-Left>",
         "<cmd>vertical resize -5<cr>",
         { desc = "Decrease screen size" },
+    },
+    {
+        { "n" },
+        "<C-A-Up>",
+        "<cmd>resize +5<cr>",
+        { desc = "Increase screen size in the vertical direction" },
+    },
+    {
+        { "n" },
+        "<C-A-Down>",
+        "<cmd>resize -5<cr>",
+        { desc = "Decrease screen size in the vertical direction" },
     },
     {
         "n",
