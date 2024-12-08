@@ -48,7 +48,7 @@ return {
         config = function()
             require("neodev")
             local lspconfig = require("lspconfig")
-            local servers = { "gopls" }
+            local servers = {}
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             -- Quiets warnings about different Unicode formats
             capabilities.offsetEncoding = { "utf-16" }
@@ -192,12 +192,7 @@ return {
                 cmd = { "clangd", "--header-insertion=never" },
             }
 
-            lspconfig.tsserver.setup {
-                on_attach = on_attach,
-                flags = lsp_flags,
-                capabilities = capabilities,
-                cmd = { "typescript-language-server", "--stdio" },
-            }
+
             lspconfig.html.setup {
                 cmd = { home .. "/.cargo/bin/htmx-lsp" },
             }
