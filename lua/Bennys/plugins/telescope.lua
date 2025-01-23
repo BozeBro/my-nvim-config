@@ -17,7 +17,7 @@ return {
             },
         },
         -- lazy = false,
-        lazy = true,
+        lazy = false,
         cmd = "Telescope",
         dependencies = {
             { "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", build = "make",       name = "fzf" },

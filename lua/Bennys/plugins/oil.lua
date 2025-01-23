@@ -1,12 +1,18 @@
 return {
     {
-        "stevearc/oil.nvim",
+        "BozeBro/oil.nvim",
         enabled = true,
         lazy = false,
+        version = "*",
         cmd = "Oil",
         keys = { "-" },
         opts = {
             default_file_explorer = true,
+            columns = {
+                "permissions",
+					"size",
+					"ctime",
+					"icon",            }
         },
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },

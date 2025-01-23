@@ -1,20 +1,28 @@
 return {
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         event = "BufReadPre",
         enabled = true,
         config = function()
             local null_ls = require("null-ls")
             local sources = {
-                null_ls.builtins.formatting.stylua,
+                -- null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.black,
-                null_ls.builtins.formatting.smlfmt,
                 -- null_ls.builtins.diagnostics.cpplint,
                 null_ls.builtins.formatting.clang_format,
-                null_ls.builtins.diagnostics.mypy,
-                null_ls.builtins.formatting.rustfmt,
+                -- null_ls.builtins.diagnostics.mypy,
+                -- null_ls.builtins.formatting.rustfmt,
             }
+
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                pattern = { "*.rs" },
+                callback = function()
+                    vim.lsp.buf.format()
+                end,
+            })
+
             null_ls.setup {
                 -- you can reuse a shared lspconfig on_attach callback here
                 on_attach = function(client, bufnr)

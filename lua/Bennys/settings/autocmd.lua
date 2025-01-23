@@ -1,4 +1,6 @@
 local map = vim.keymap.set
+local autocmd = vim.api.nvim_create_autocmd
+
 local function augroup(name)
     return vim.api.nvim_create_augroup("Bennys " .. name, { clear = true })
 end
@@ -41,3 +43,30 @@ regCreate("Help", function(args)
     vim.cmd.help(args.args)
     vim.cmd.only()
 end, { nargs = 1, complete = "help" })
+
+local cmd_group = vim.api.nvim_create_augroup("Bennys.User", {
+    clear = true,
+})
+-- regular line numbers in the cmdline
+autocmd({ "CmdlineEnter" }, {
+    group = cmd_group,
+    callback = function()
+        -- vim.api.nvim_set_hl(0, "LineNrBelow", { bg = "#ffffff" })
+        -- vim.api.nvim_set_hl(0, "LineNrAbove", { bg = "#ffffff" })
+        -- vim.opt.relativenumber = false
+        -- vim.cmd.redraw()
+    end,
+})
+
+autocmd({ "CmdlineLeave" }, {
+    group = cmd_group,
+    callback = function()
+        -- local below_group = vim.api.nvim_get_hl(0, { name = "LineNrBelow" })
+        -- local above_group = vim.api.nvim_get_hl(0, { name = "LineNrAbove" })
+
+        -- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#a1afcb" })
+        -- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#a1afcb" })
+        -- vim.opt.relativenumber = true
+        -- vim.cmd.redraw()
+    end,
+})

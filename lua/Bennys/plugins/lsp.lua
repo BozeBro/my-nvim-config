@@ -28,7 +28,7 @@ return {
         event = "BufReadPost",
         dependencies = {
             "nvim-treesitter/nvim-treesitter", -- optional
-            "nvim-tree/nvim-web-devicons",     -- optional
+            "nvim-tree/nvim-web-devicons", -- optional
         },
         opts = {
             lightbulb = {
@@ -48,7 +48,7 @@ return {
         config = function()
             require("neodev")
             local lspconfig = require("lspconfig")
-            local servers = { "gopls" }
+            local servers = {}
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             -- Quiets warnings about different Unicode formats
             capabilities.offsetEncoding = { "utf-16" }
@@ -86,10 +86,10 @@ return {
                         buf.definition,
                         combine(bufopts, { desc = "[LSP] Go to Definition" }),
                     },
-                    { "n", "K",          buf.hover,                   dscr("[LSP] Hover definition") },
-                    { "i", "<c-k>",      buf.hover,                   dscr("[LSP] Hover definition") },
-                    { "n", "<C-k>",      buf.signature_help,          dscr("[LSP] Signature Help") },
-                    { "n", "<leader>za", buf.add_workspace_folder,    dscr("[LSP] Add Workspace Folder") },
+                    { "n", "K", buf.hover, dscr("[LSP] Hover definition") },
+                    { "i", "<c-k>", buf.hover, dscr("[LSP] Hover definition") },
+                    { "n", "<C-k>", buf.signature_help, dscr("[LSP] Signature Help") },
+                    { "n", "<leader>za", buf.add_workspace_folder, dscr("[LSP] Add Workspace Folder") },
                     { "n", "<leader>zr", buf.remove_workspace_folder, dscr("[LSP] Remove Workspace Folder") },
                     {
                         "n",
@@ -107,10 +107,10 @@ return {
                         end,
                         dscr("Format file"),
                     },
-                    { "n", "<leader>D",  buf.type_definition, dscr("[LSP] Type Definition") },
-                    { "n", "<leader>rn", buf.rename,          dscr("[LSP] rename") },
-                    { "n", "<leader>ca", buf.code_action,     dscr("[LSP] code Action") },
-                    { "n", "gr",         buf.references,      dscr("[LSP] references") },
+                    { "n", "<leader>D", buf.type_definition, dscr("[LSP] Type Definition") },
+                    { "n", "<leader>rn", buf.rename, dscr("[LSP] rename") },
+                    { "n", "<leader>ca", buf.code_action, dscr("[LSP] code Action") },
+                    { "n", "gr", buf.references, dscr("[LSP] references") },
                     {
                         "n",
                         "gl",
@@ -162,6 +162,15 @@ return {
                 flags = lsp_flags,
                 -- TODO: Fix this https://github.com/hrsh7th/cmp-nvim-lsp/issues/72
                 capabilities = vim.lsp.protocol.make_client_capabilities(),
+                settings = {
+                    ["rust-analyzer"] = {
+                        rustfmt = { enable = true },
+                        diagnostics = {
+                            enable = true,
+                            refreshSupport = false,
+                        },
+                    },
+                },
             }
             lspconfig.pylsp.setup {
                 on_attach = on_attach,
@@ -178,29 +187,43 @@ return {
                             pyls_isort = { enabled = true },
                             rope_autoimport = { enabled = true },
                             rope_completion = { enabled = true },
+                            mypy = { enabled = true },
                         },
                     },
                 },
             }
             local home = vim.fn.expand("$HOME")
             lspconfig.lua_ls.setup {
-                on_attach = on_attach,
-                flags = lsp_flags,
-                capabilities = capabilities,
-                root_dir = function(filename, bufnr)
-                    return vim.fn.getcwd()
-                end,
-                settings = {
+                on_init = function(client)
+                    if client.workspace_folders then
+                        local path = client.workspace_folders[1].name
+                        if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+                            return
+                        end
+                    end
 
-                    Lua = {
+                    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
                         runtime = {
+                            -- Tell the language server which version of Lua you're using
+                            -- (most likely LuaJIT in the case of Neovim)
                             version = "LuaJIT",
                         },
-                    },
-
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
+                        -- Make the server aware of Neovim runtime files
+                        workspace = {
+                            checkThirdParty = false,
+                            library = {
+                                vim.env.VIMRUNTIME,
+                                -- Depending on the usage, you might want to add additional paths here.
+                                -- "${3rd}/luv/library"
+                                -- "${3rd}/busted/library",
+                            },
+                            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
+                            -- library = vim.api.nvim_get_runtime_file("", true),
+                        },
+                    })
+                end,
+                settings = {
+                    Lua = {},
                 },
             }
             lspconfig.clangd.setup {
@@ -209,12 +232,6 @@ return {
                 cmd = { "clangd", "--header-insertion=never" },
             }
 
-            lspconfig.tsserver.setup {
-                on_attach = on_attach,
-                flags = lsp_flags,
-                capabilities = capabilities,
-                cmd = { "typescript-language-server", "--stdio" },
-            }
             lspconfig.html.setup {
                 cmd = { home .. "/.cargo/bin/htmx-lsp" },
             }

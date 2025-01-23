@@ -1,17 +1,20 @@
 return {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-        bigfile = { enabled = false },
-        notifier = { enabled = false },
-        quickfile = { enabled = false },
-        statuscolumn = { enabled = false },
-        dashboard = { example = "github" },
-        words = { enabled = false },
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        enabled = false,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            bigfile = { enabled = false },
+            notifier = { enabled = false },
+            quickfile = { enabled = false },
+            statuscolumn = { enabled = false },
+            dashboard = { example = "github" },
+            words = { enabled = false },
+        },
     },
     {
         "folke/edgy.nvim",
