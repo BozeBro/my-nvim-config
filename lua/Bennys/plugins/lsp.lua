@@ -232,6 +232,8 @@ return {
                 cmd = { "clangd", "--header-insertion=never" },
             }
 
+
+
             lspconfig.html.setup {
                 cmd = { home .. "/.cargo/bin/htmx-lsp" },
             }
