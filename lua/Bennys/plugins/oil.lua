@@ -1,6 +1,6 @@
 return {
     {
-        "BozeBro/oil.nvim",
+        "stevearc/oil.nvim",
         enabled = true,
         lazy = false,
         version = "*",
