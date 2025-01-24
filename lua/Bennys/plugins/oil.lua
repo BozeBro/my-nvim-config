@@ -8,11 +8,6 @@ return {
         keys = { "-" },
         opts = {
             default_file_explorer = true,
-            columns = {
-                "permissions",
-					"size",
-					"ctime",
-					"icon",            }
         },
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
